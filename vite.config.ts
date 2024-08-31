@@ -7,13 +7,6 @@ export default defineConfig({
   server: {
     port: 4001,
     host: true,
-    // proxy:{
-    //   '/api': {
-    //     target: 'https://unamocdon.vn',
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/api/, '')
-    //   }
-    // },
   },
   preview: {
     port: 4001,
