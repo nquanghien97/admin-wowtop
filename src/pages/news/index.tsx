@@ -1,4 +1,4 @@
-import { TableColumnsType, Image, Button, Table } from 'antd'
+import { TableColumnsType, Button, Table } from 'antd'
 import { useEffect, useState } from 'react';
 import { NewsEntity } from '../../entities/News';
 import EditIcon from '../../assets/icons/EditIcon';
@@ -37,25 +37,9 @@ function Handbook() {
       width: 300
     },
     {
-      title: "Hình ảnh",
-      dataIndex: 'imageUrl',
-      key: 2,
-      render(value) {
-        return (
-          <div className="flex flex-wrap justify-center w-full py-4 gap-4">
-            <Image.PreviewGroup
-            >
-              <Image className="border-2 m-auto cursor-pointer" src={`${import.meta.env.VITE_API_URL}${value}`} alt="preview avatar" />
-            </Image.PreviewGroup>
-          </div>
-        )
-      }
-    },
-    {
       title: "Nội dung",
       dataIndex: 'content',
       key: 5,
-      width: 300,
       render(value) {
         return <div dangerouslySetInnerHTML={{ __html: value }} />
       }
@@ -130,7 +114,7 @@ function Handbook() {
     <div className="h-full p-4">
       <div className="flex mb-4">
         <div className="m-auto">
-          <span className="px-6 p-2 rounded-full bg-[#0071BA] uppercase font-bold text-2xl">Quản lý Cẩm nang</span>
+          <span className="px-6 p-2 rounded-full bg-[#0071BA] uppercase font-bold text-2xl">Quản lý Tin tức</span>
         </div>
         <div
           className="bg-[#0071ba] rounded-md cursor-pointer h-full px-4 py-2 flex items-center justify-center hover:opacity-80 duration-300 text-white"

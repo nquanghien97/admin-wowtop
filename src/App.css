@@ -1,3 +1,19 @@
-#root {
+.ant-modal-content {
+  padding: 0 !important;
 }
 
+.tox-statusbar__right-container {
+  display: none !important;
+}
+
+.tox-notification {
+  display: none !important;
+}
+
+.tox-notification--in {
+  display: none !important;
+}
+
+.tox-notification--warning {
+  display: none !important;
+}
