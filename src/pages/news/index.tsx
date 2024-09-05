@@ -10,7 +10,7 @@ import DeleteNews from './actions/DeleteNews';
 import { getAllNews } from '../../services/news';
 import withAuth from '../../hocs/withAuth';
 
-function Handbook() {
+function News() {
 
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -144,6 +144,6 @@ function Handbook() {
   )
 }
 
-const HandbookWithAuth = withAuth(Handbook)
+const NewsWithAuth = withAuth(News)
 
-export default HandbookWithAuth
+export default NewsWithAuth
