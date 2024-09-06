@@ -1,4 +1,4 @@
-import { TableColumnsType, Button, Table } from 'antd'
+import { TableColumnsType, Button, Table, ConfigProvider } from 'antd'
 import { useEffect, useState } from 'react';
 import { NewsEntity } from '../../entities/News';
 import EditIcon from '../../assets/icons/EditIcon';
@@ -47,7 +47,7 @@ function News() {
     {
       title: "Thao tác",
       dataIndex: 5,
-      width: 100,
+      width: 150,
       render(_, record) {
         return (
           <div className="flex flex-col justify-between gap-2">
@@ -77,7 +77,7 @@ function News() {
                   setOpenDeleteModal(true)
                   setIdNews(record.id)
                 }}
-              >      
+              >
                 <p>Xóa</p>
               </Button>
             </div>
@@ -87,7 +87,7 @@ function News() {
     }
   ]
 
-  const fetchData = async ({ page, pageSize } : { page: number, pageSize: number }) => {
+  const fetchData = async ({ page, pageSize }: { page: number, pageSize: number }) => {
     setLoading(true);
     try {
       const res = await getAllNews({ page, pageSize });
@@ -106,7 +106,7 @@ function News() {
     })()
   }, [paging.page, paging.pageSize, refreshKey])
 
-  const onChangePaging = async (page: number, pageSize: number ) => {
+  const onChangePaging = async (page: number, pageSize: number) => {
     await fetchData({ page: page, pageSize: pageSize })
   }
 
@@ -124,19 +124,37 @@ function News() {
           <PlusIcon color="white" />
         </div>
       </div>
-      <Table
-        dataSource={data}
-        columns={columns}
-        rowKey={record => record.id}
-        bordered
-        loading={loading}
-        pagination={{
-          total: paging.total,
-          pageSize: paging.pageSize,
-          onChange: onChangePaging,
-          showSizeChanger: true
+      <ConfigProvider
+        theme={{
+          token: {
+            borderRadius: 8,
+          },
+          components: {
+            Table: {
+              borderColor: "black",
+              headerBg: "#0071BA !important",
+              headerColor: "white",
+            }
+          }
         }}
-      />
+      >
+        <Table
+          dataSource={data}
+          columns={columns}
+          rowHoverable={false}
+          rowKey={record => record.id}
+          rowClassName={(_, index) => index % 2 === 0 ? 'bg-[#e9e9e9]' : 'bg-white'}
+          bordered
+          loading={loading}
+          pagination={{
+            total: paging.total,
+            pageSize: paging.pageSize,
+            onChange: onChangePaging,
+            showSizeChanger: true
+          }}
+          scroll={{ y: 700 }}
+        />
+      </ConfigProvider>
       {openAddModal && <AddNews open={openAddModal} onClose={() => setOpenAddModal(false)} setRefreshKey={setRefreshKey} />}
       {openEditModal && <UpdateNews open={openEditModal} onClose={() => setOpenEditModal(false)} id={idNews} setRefreshKey={setRefreshKey} />}
       {openDeleteModal && <DeleteNews open={openDeleteModal} onCancel={() => setOpenDeleteModal(false)} id={idNews} setRefreshKey={setRefreshKey} />}
