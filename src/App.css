@@ -17,3 +17,7 @@
 .tox-notification--warning {
   display: none !important;
 }
+
+/* .ant-input::placeholder {
+  color: black !important;
+} */

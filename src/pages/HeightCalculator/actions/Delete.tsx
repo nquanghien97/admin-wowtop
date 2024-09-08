@@ -1,16 +1,16 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
 import { useNotification } from "../../../hooks/useNotification";
-import { deleteNews } from "../../../services/news";
+import { deleteInformation } from "../../../services/heightCalculator";
 
-interface DeleteProductProps {
+interface DeleteProps {
   open: boolean;
   onCancel: () => void;
   id: number;
   setRefreshKey: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function DeleteNews(props: DeleteProductProps) {
+function Delete(props: DeleteProps) {
   const { open, onCancel, id, setRefreshKey } = props
 
   const [loading, setLoading] = useState(false);
@@ -20,13 +20,13 @@ function DeleteNews(props: DeleteProductProps) {
   const onSubmit = async () => {
     setLoading(true);
     try {
-      await deleteNews(id)
-      notification.success('Xóa Bản tin thành công')
+      await deleteInformation(id)
+      notification.success('Xóa thông tin khách hàng thành công')
       onCancel();
       setRefreshKey(pre => !pre)
     } catch (err) {
       console.log(err)
-      notification.error('Xóa Bản tin thất bại')
+      notification.error('Xóa thông tin khách hàng thất bại')
     } finally {
       setLoading(false);
     }
@@ -40,7 +40,7 @@ function DeleteNews(props: DeleteProductProps) {
       footer={false}
       wrapClassName='!p-0'
     >
-      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#0071BA] rounded-t-lg uppercase font-bold">{`Bạn muốn xóa cẩm nang này không`}</div>
+      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#0071BA] rounded-t-lg uppercase font-bold">{`Bạn có chắc chắn muốn xóa không?`}</div>
       <div className="flex justify-center gap-12 p-4">
         <Button type="primary" danger onClick={onCancel}>Hủy</Button>
         <Button type="primary" onClick={onSubmit} loading={loading}>Xác nhận</Button>
@@ -49,4 +49,4 @@ function DeleteNews(props: DeleteProductProps) {
   )
 }
 
-export default DeleteNews
+export default Delete

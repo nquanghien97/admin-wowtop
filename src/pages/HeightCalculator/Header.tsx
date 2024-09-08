@@ -1,28 +1,30 @@
-import { useState } from "react";
 import { Button, Form, Input, Tooltip } from "antd";
 import SearchIcon from "../../assets/icons/SearchIcon";
+import { SearchFormType } from ".";
+import { getInformations } from "../../services/heightCalculator";
+import { HeightCalculatorEntity } from "../../entities/HeightCalculator";
 
-interface FormValues {
-  search: string;
-  system_id: number;
-  group_id: number;
-  user: {
-    label: string;
-    value: number;
-  };
-  channel_id: number;
-  date: Date[]
+interface HeaderProps {
+  setSearchForm: React.Dispatch<React.SetStateAction<SearchFormType | undefined>>
+  setData: React.Dispatch<React.SetStateAction<HeightCalculatorEntity[]>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-
-function Header() {
-
-  const [loadingUser, setLoadingUser] = useState(false);
-
+function Header(props: HeaderProps) {
+  const { setSearchForm, setData, setLoading } = props;
   const [form] = Form.useForm();
 
-  const onFinish = async (data: FormValues) => {
-   
+  const onFinish = async (data: SearchFormType) => {
+    setLoading(true);
+    setSearchForm(data);
+    try {
+      const res = await getInformations(data);
+      setData(res.data.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -30,7 +32,7 @@ function Header() {
       <div className="flex gap-2 items-center">
         <Form.Item
           className="w-[160px]"
-          name="idPhacDo"
+          name="code"
         >
           <Input
             placeholder="Mã Phác Đồ"
@@ -50,7 +52,7 @@ function Header() {
         </Form.Item>
         <Form.Item
           className="w-[160px]"
-          name="fullNameParent"
+          name="parentName"
         >
           <Input
             placeholder="Họ tên phụ huynh"
