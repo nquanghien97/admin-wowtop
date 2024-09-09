@@ -26,7 +26,7 @@ function News() {
   const [idNews, setIdNews] = useState(-1);
 
   useEffect(() => {
-    document.title = "Cẩm nang"
+    document.title = "Tin tức"
   }, []);
 
   const columns: TableColumnsType = [

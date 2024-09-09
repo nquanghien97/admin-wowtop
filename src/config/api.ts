@@ -5,11 +5,11 @@ const api = axios.create({
 });
 
 // Hàm xử lý đăng xuất
-export const handleLogout = () => {
-  localStorage.removeItem('token');
-  // Chuyển hướng đến trang đăng nhập
-  window.location.href = '/login';
-};
+// export const handleLogout = () => {
+//   localStorage.removeItem('token');
+//   // Chuyển hướng đến trang đăng nhập
+//   window.location.href = '/login';
+// };
 
 // Interceptor cho request
 api.interceptors.request.use(
@@ -33,7 +33,8 @@ api.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       // Token hết hạn hoặc không hợp lệ
-      handleLogout();
+      // handleLogout();
+      localStorage.removeItem('token');
       return Promise.reject(new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'));
     }
     return Promise.reject(error);

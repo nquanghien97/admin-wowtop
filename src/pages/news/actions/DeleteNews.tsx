@@ -2,6 +2,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { useNotification } from "../../../hooks/useNotification";
 import { deleteNews } from "../../../services/news";
+import { useNavigate } from "react-router-dom";
 
 interface DeleteProductProps {
   open: boolean;
@@ -16,6 +17,7 @@ function DeleteNews(props: DeleteProductProps) {
   const [loading, setLoading] = useState(false);
 
   const notification = useNotification();
+  const navigate = useNavigate()
 
   const onSubmit = async () => {
     setLoading(true);
@@ -25,8 +27,15 @@ function DeleteNews(props: DeleteProductProps) {
       onCancel();
       setRefreshKey(pre => !pre)
     } catch (err) {
-      console.log(err)
-      notification.error('Xóa Bản tin thất bại')
+      if (err instanceof Error) {
+        console.log(err.message)
+        if (err.message === "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.") {
+          navigate('/login')
+          notification.error(err.message)
+        } else {
+          notification.error('Xóa Bản tin thất bại')
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -40,7 +49,7 @@ function DeleteNews(props: DeleteProductProps) {
       footer={false}
       wrapClassName='!p-0'
     >
-      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#0071BA] rounded-t-lg uppercase font-bold">{`Bạn muốn xóa cẩm nang này không`}</div>
+      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#0071BA] rounded-t-lg uppercase font-bold">{`Bạn muốn xóa Bản tin này không`}</div>
       <div className="flex justify-center gap-12 p-4">
         <Button type="primary" danger onClick={onCancel}>Hủy</Button>
         <Button type="primary" onClick={onSubmit} loading={loading}>Xác nhận</Button>

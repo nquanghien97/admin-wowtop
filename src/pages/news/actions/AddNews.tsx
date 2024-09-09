@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal, Image } from "antd";
 import { useState } from "react";
 import { createNews } from "../../../services/news";
 import { useNotification } from "../../../hooks/useNotification";
+import { useNavigate } from "react-router-dom";
 
 interface AddNewsProps {
   open: boolean;
@@ -22,13 +23,13 @@ function AddNews(props: AddNewsProps) {
 
   const [form] = Form.useForm();
   const notification = useNotification();
-
+  const navigate = useNavigate()
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target || !e.target.files) return;
     const newFile = e.target.files[0]
     try {
       setFile(newFile)
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
   }
@@ -45,8 +46,14 @@ function AddNews(props: AddNewsProps) {
       onClose();
       setRefreshKey(pre => !pre)
     } catch (err) {
-      console.log(err)
-      notification.error('Thêm Tin tức thất bại')
+      if (err instanceof Error) {
+        if (err.message === "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.") {
+          navigate('/login')
+          notification.error(err.message)
+        } else {
+          notification.error('Thêm Tin tức thất bại')
+        }
+      }
     } finally {
       setLoading(false);
     }

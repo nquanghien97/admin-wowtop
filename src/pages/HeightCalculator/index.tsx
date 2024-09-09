@@ -160,6 +160,9 @@ function HeightCalculator() {
       setLoading(false);
     }
   }, [searchForm])
+  useEffect(() => {
+    document.title = "Thông tin khách hàng"
+  }, []);
 
   useEffect(() => {
     (async () => {

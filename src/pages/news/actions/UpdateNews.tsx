@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { NewsEntity } from "../../../entities/News";
 import { useNotification } from "../../../hooks/useNotification";
 import { Editor } from "@tinymce/tinymce-react";
+import { useNavigate } from "react-router-dom";
 
 interface EditNewsProps {
   open: boolean;
@@ -27,7 +28,7 @@ function UpdateNews(props: EditNewsProps) {
   const [dataNews, setDataNews] = useState<NewsEntity>()
 
   const notification = useNotification();
-
+  const navigate = useNavigate();
   useEffect(() => {
     (async() => {
       const res = await getNews(id)
@@ -61,8 +62,14 @@ function UpdateNews(props: EditNewsProps) {
       onClose();
       setRefreshKey(pre => !pre)
     } catch (err) {
-      console.log(err)
-      notification.error('Sửa Bản tin thất bại')
+      if (err instanceof Error) {
+        if (err.message === "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.") {
+          navigate('/login')
+          notification.error(err.message)
+        } else {
+          notification.error('Sửa Bản tin thất bại')
+        }
+      }
     } finally {
       setLoading(false);
     }

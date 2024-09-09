@@ -2,6 +2,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { useNotification } from "../../../hooks/useNotification";
 import { deleteInformation } from "../../../services/heightCalculator";
+import { useNavigate } from "react-router-dom";
 
 interface DeleteProps {
   open: boolean;
@@ -16,7 +17,7 @@ function Delete(props: DeleteProps) {
   const [loading, setLoading] = useState(false);
 
   const notification = useNotification();
-
+  const navigate = useNavigate();
   const onSubmit = async () => {
     setLoading(true);
     try {
@@ -25,8 +26,14 @@ function Delete(props: DeleteProps) {
       onCancel();
       setRefreshKey(pre => !pre)
     } catch (err) {
-      console.log(err)
-      notification.error('Xóa thông tin khách hàng thất bại')
+      if (err instanceof Error) {
+        if (err.message === "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.") {
+          navigate('/login')
+          notification.error(err.message)
+        } else {
+          notification.error('Xóa thông tin khách hàng thất bại')
+        }
+      }
     } finally {
       setLoading(false);
     }
