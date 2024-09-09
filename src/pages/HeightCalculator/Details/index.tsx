@@ -10,9 +10,9 @@ import { dateToNow } from '../../../utils/dateToNow';
 import { usePDF } from 'react-to-pdf';
 
 interface DeleteProductProps {
-  open: boolean;
-  onCancel: () => void;
-  id: number;
+  open?: boolean;
+  onCancel?: () => void;
+  id?: number;
 }
 
 function Details(props: DeleteProductProps) {
@@ -32,7 +32,7 @@ function Details(props: DeleteProductProps) {
   }, [id])
   if (!data) return
 
-  const resultCalculator = heightCalculator(data?.currentHeight, ageCalculator(data?.date_of_birth), data.fatherHeight, data.motherHeight, data.gender)
+  const resultCalculator = heightCalculator(data?.currentHeight, ageCalculator(data?.date_of_birth).years, ageCalculator(data?.date_of_birth).months, data.fatherHeight, data.motherHeight, data.gender)
   const gender = {
     BOY: "Nam",
     GIRL: "Nữ"

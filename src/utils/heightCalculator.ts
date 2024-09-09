@@ -2,7 +2,8 @@ import { Gender } from "../entities/HeightCalculator";
 
 export function heightCalculator(
   currentHeight: number,
-  currentAge: number,
+  currentYear: number,
+  currentMonth: number,
   fatherHeight: number,
   motherHeight: number,
   gender: Gender
@@ -12,48 +13,52 @@ export function heightCalculator(
     GIRL: [0, 12.4, 8.7, 7.6, 6.7, 5.7, 5.7, 5.8, 5.9, 6.1, 6.2, 6.7, 5.6, 3.3, 1.7, 0.6, 0.7, 0.3, 0],
     BOY:  [0, 11.4, 9, 7.2, 6.7, 6, 5.7, 5.6, 5.3, 5.2, 5.3, 6, 6.9, 7.2, 5.8, 3.9, 2.3, 0.9, 0]
   };
+  console.log({
+    currentHeight,
+    currentYear,
+    currentMonth,
+    fatherHeight,
+    motherHeight,
+    gender,
+  })
 
   // Ensure the age is within the supported range
-  if (currentAge < 0 || currentAge > 20) {
-    return null; // Invalid age
+  if (currentYear < 0 || currentYear > 20 || currentMonth < 0 || currentMonth > 11) {
+    return null; // Invalid year or month
   }
 
   // Determine the height increase array based on gender
-  const heightIncrease = gender === Gender.BOY ? heightIncreasePerYear.BOY : heightIncreasePerYear.GIRL;
+  const heightIncrease = gender === "BOY" ? heightIncreasePerYear.BOY : heightIncreasePerYear.GIRL;
 
   // Initialize array to store heights for each age
-  const heightsByAge = new Array(21).fill(null);
-  
-  // Fill in known heights up to current age
-  for (let age = 0; age <= currentAge; age++) {
-    if (age === currentAge) {
-      heightsByAge[age] = currentHeight.toFixed(1);
-    } else {
-      heightsByAge[age] = (
-        currentHeight - heightIncrease.slice(age, currentAge).reduce((sum, val) => sum + val, 0)
-      ).toFixed(1);
-    }
-  }
+  const heightsByAge = new Array(21).fill('0'); // Default to '0' for all ages initially
 
-  let predictedHeight = currentHeight;
+  // Tính chiều cao hiện tại theo tỷ lệ số tháng trong năm
+  const fractionalHeightIncrease = (heightIncrease[currentYear] * currentMonth) / 12;
+  const adjustedCurrentHeight = currentHeight - fractionalHeightIncrease;
 
-  // Calculate growth for future years
-  for (let age = currentAge + 1; age <= 20; age++) {
-    predictedHeight += heightIncrease[age - 1];  // Add previous year's increase
-    heightsByAge[age] = predictedHeight.toFixed(1);
+  // Đặt chiều cao lúc tuổi hiện tại vào mảng
+  heightsByAge[currentYear] = adjustedCurrentHeight.toFixed(1);
+
+  let predictedHeight = adjustedCurrentHeight;
+
+  // Calculate growth for future years starting from the next whole year
+  for (let year = currentYear + 1; year <= 20; year++) {
+    predictedHeight += heightIncrease[year - 1]; // Add previous year's increase
+    heightsByAge[year] = predictedHeight.toFixed(1);
   }
 
   // Calculate final height at 20 based on parents' height
   let finalHeight;
-  if (gender === Gender.BOY) {
+  if (gender === "BOY") {
     finalHeight = ((fatherHeight + motherHeight) * 1.08) / 2;
   } else {
     finalHeight = ((fatherHeight * 0.923) + motherHeight) / 2;
   }
 
   // Ensure that height from 18 to 20 is correctly adjusted
-  for (let age = 18; age <= 20; age++) {
-    heightsByAge[age] = finalHeight.toFixed(1);
+  for (let year = 18; year <= 20; year++) {
+    heightsByAge[year] = finalHeight.toFixed(1);
   }
 
   return {
