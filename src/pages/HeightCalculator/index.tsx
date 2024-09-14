@@ -18,6 +18,11 @@ export interface SearchFormType {
   fullName?: string;
 }
 
+const optionsGender = {
+  GIRL: "Nữ",
+  BOY: "Nam",
+}
+
 function HeightCalculator() {
 
   const [loading, setLoading] = useState(false);
@@ -44,11 +49,11 @@ function HeightCalculator() {
       title: "Mã phác đồ",
       dataIndex: 'code',
       key: 2,
-      width: 100
+      width: 150
     },
     {
-      title: "Họ tên bố",
-      dataIndex: 'fatherName',
+      title: "Họ tên phụ huynh",
+      dataIndex: 'parentName',
       key: 3,
       width: 150
     },
@@ -57,12 +62,6 @@ function HeightCalculator() {
       dataIndex: "fatherHeight",
       key: 4,
       width: 100
-    },
-    {
-      title: "Họ tên mẹ",
-      dataIndex: "motherName",
-      key: 5,
-      width: 150
     },
     {
       title: "Cân nặng mẹ (kg)",
@@ -103,11 +102,21 @@ function HeightCalculator() {
     {
       title: "Giới tính",
       dataIndex: "gender",
-      key: 12
+      key: 12,
+      render(value: keyof typeof optionsGender) {
+        return optionsGender[value]
+      },
+      width: 100
+    },
+    {
+      title: "Tỉnh thành",
+      dataIndex: "province",
+      key: 13,
+      width: 150
     },
     {
       title: "Thao tác",
-      dataIndex: 13,
+      dataIndex: 14,
       width: 150,
       render(_, record) {
         return (
@@ -134,10 +143,10 @@ function HeightCalculator() {
                 type="primary"
                 danger
                 className="w-full"
-              onClick={() => {
-                setOpenDeleteModal(true)
-                setId(record.id)
-              }}
+                onClick={() => {
+                  setOpenDeleteModal(true)
+                  setId(record.id)
+                }}
               >
                 <p>Xóa</p>
               </Button>
@@ -212,7 +221,7 @@ function HeightCalculator() {
         </ConfigProvider>
       </div>
       <Details id={id} onCancel={() => setOpenDetailModal(false)} open={openDetailModal} />
-      <Delete id={id} onCancel={() => setOpenDeleteModal(false)} open={openDeleteModal} setRefreshKey={setRefreshKey}  />
+      <Delete id={id} onCancel={() => setOpenDeleteModal(false)} open={openDeleteModal} setRefreshKey={setRefreshKey} />
     </div>
   )
 }

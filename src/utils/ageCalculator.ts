@@ -19,5 +19,5 @@ export function ageCalculator(startDate: string) {
     months += 12;
     years--;
   }
-  return { years, months } // Làm tròn đến 1 chữ số thập phân
+  return { years, months }
 }

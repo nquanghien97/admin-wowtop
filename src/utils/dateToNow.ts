@@ -1,15 +1,17 @@
 export function dateToNow(startDate: string) {
-  const start = new Date(startDate);
-  const today = new Date();
+  const [day, month, year] = startDate.split('-').map(Number); // Tách ngày, tháng, năm
+  const start = new Date(year, month - 1, day); // Chuyển thành đối tượng Date (lưu ý tháng bắt đầu từ 0)
+  const now = new Date(); // Ngày hiện tại
   
-  let years = today.getFullYear() - start.getFullYear();
-  let months = today.getMonth() - start.getMonth();
-  let days = today.getDate() - start.getDate();
+  let years = now.getFullYear() - start.getFullYear();
+  let months = now.getMonth() - start.getMonth();
+  let days = now.getDate() - start.getDate();
+  
   
   // Điều chỉnh khi ngày hiện tại nhỏ hơn ngày bắt đầu
   if (days < 0) {
       months--;
-      const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+      const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
       days += previousMonth.getDate();
   }
   

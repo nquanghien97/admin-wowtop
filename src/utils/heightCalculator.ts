@@ -13,14 +13,6 @@ export function heightCalculator(
     GIRL: [0, 12.4, 8.7, 7.6, 6.7, 5.7, 5.7, 5.8, 5.9, 6.1, 6.2, 6.7, 5.6, 3.3, 1.7, 0.6, 0.7, 0.3, 0],
     BOY:  [0, 11.4, 9, 7.2, 6.7, 6, 5.7, 5.6, 5.3, 5.2, 5.3, 6, 6.9, 7.2, 5.8, 3.9, 2.3, 0.9, 0]
   };
-  console.log({
-    currentHeight,
-    currentYear,
-    currentMonth,
-    fatherHeight,
-    motherHeight,
-    gender,
-  })
 
   // Ensure the age is within the supported range
   if (currentYear < 0 || currentYear > 20 || currentMonth < 0 || currentMonth > 11) {

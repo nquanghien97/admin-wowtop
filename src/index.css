@@ -17,3 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bg-liner {
+  background: linear-gradient(to right, #0ea8b0, #3bbcc2, #83dce0, #42cfd8, #1dc4cd, #0db5c0);
+}
+

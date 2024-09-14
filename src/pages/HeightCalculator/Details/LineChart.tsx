@@ -307,10 +307,10 @@ const LineChart = (props: { dataLine: number[] }) => {
         label: 'Dưới chuẩn độ 1',
         data: c4,
         fill: false,
-        borderColor: '#efd655',
+        borderColor: '#ffd655',
         tension: 0.1,
         pointRadius: 0,
-        backgroundColor: '#efd655',
+        backgroundColor: '#ffd655',
         datalabels: {
           display: false
         }

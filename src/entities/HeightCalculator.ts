@@ -1,16 +1,22 @@
 export interface HeightCalculatorEntity {
   id: number,
   code: string,
-  fatherName: string,
+  parentName: string,
   fatherHeight: number,
-  motherName: string,
   motherHeight: number,
   phoneNumber: string,
+  province: string,
+  district: string,
+  ward: string,
+  address: string,
   fullName: string,
+  gender: Gender;
   date_of_birth: string,
   currentHeight: number,
   currentWeight: number,
-  gender: Gender;
+  currentProduct: string,
+  sport: string,
+  timeSleep: string,
   createdAt: Date;
 }
 
