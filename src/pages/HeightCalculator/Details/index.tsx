@@ -2,7 +2,7 @@ import { Modal } from 'antd'
 import { useEffect, useState } from 'react';
 import { HeightCalculatorEntity } from '../../../entities/HeightCalculator';
 import { getInformation } from '../../../services/heightCalculator';
-import { heightCalculator } from '../../../utils/heightCalculator';
+import { dataCurrentHeight, heightCalculator } from '../../../utils/heightCalculator';
 import { ageCalculator } from '../../../utils/ageCalculator';
 import LineChart from './LineChart';
 import { formatDate } from '../../../utils/formatDate';
@@ -141,13 +141,13 @@ function Details(props: DeleteProductProps) {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border-[1px] text-center">{(duoi_chuan_do_3[duoi_chuan_do_3.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(duoi_chuan_do_2[duoi_chuan_do_2.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(duoi_chuan_do_1[duoi_chuan_do_1.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(duong_chieu_cao_chuan[duong_chieu_cao_chuan.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(tren_chuan_do_1[tren_chuan_do_1.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(tren_chuan_do_2[tren_chuan_do_2.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(tren_chuan_do_3[tren_chuan_do_3.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duoi_chuan_do_3, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duoi_chuan_do_2, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duoi_chuan_do_1, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duong_chieu_cao_chuan, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(tren_chuan_do_1, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(tren_chuan_do_2, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(tren_chuan_do_3, data.date_of_birth)).toFixed(1)} cm</td>
                   </tr>
                 </tbody>
               </table>

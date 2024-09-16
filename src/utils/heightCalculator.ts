@@ -64,5 +64,5 @@ export function dataCurrentHeight(listHeight: number[], date_of_birth: string) {
   const currentYear = ageCalculator(date_of_birth).years;
   const currentMonth = ageCalculator(date_of_birth).months;
   const finalHeight = listHeight[currentYear] + (listHeight[currentYear + 1] - listHeight[currentYear])/12*currentMonth
-  return finalHeight.toFixed(1);
+  return Number(finalHeight.toFixed(1));
 }
