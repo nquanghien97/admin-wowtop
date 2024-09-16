@@ -9,6 +9,10 @@ import { formatDate } from '../../../utils/formatDate';
 // import { dateToNow } from '../../../utils/dateToNow';
 import { usePDF } from 'react-to-pdf';
 import DownloadIcon from '../../../assets/icons/DownloadIcon';
+import { dataCurrentWeight } from '../../../utils/weightCalculator';
+import { duoi_chuan_do_1, duoi_chuan_do_2, duoi_chuan_do_3, duong_chieu_cao_chuan, tren_chuan_do_1, tren_chuan_do_2, tren_chuan_do_3 } from '../../../config/height';
+import { dinh_duong } from '../../../config/dinh_duong';
+import { can_nang_chuan, lon_hon_TB, nho_hon_TB } from '../../../config/weight';
 
 interface DeleteProductProps {
   open?: boolean;
@@ -38,6 +42,10 @@ function Details(props: DeleteProductProps) {
     BOY: "Nam",
     GIRL: "Nữ"
   }
+
+  console.log(dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth))
+  const data_dinh_duong = data.currentWeight < dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thieu_can'] : (data.currentWeight > dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thua_can'] : dinh_duong['can_nang_chuan'])
+
   return (
     <Modal
       open={open}
@@ -88,31 +96,29 @@ function Details(props: DeleteProductProps) {
           </div>
         </div>
         <p className="text-center text-[#3e5569] mb-8">Vào Group <a className="underline" href='/'><strong>"CHO CON CAO LỚN TRƯỞNG THÀNH TẬN CÙNG"</strong></a> để cập nhật các phương pháp tăng chiều cao khoa học nhất.</p>
-        <div className="mb-8 max-w-4xl m-auto">
+        <div className="mb-8 max-w-5xl m-auto">
           <div className="mb-4">
             <h2 className="uppercase text-2xl text-center mb-4">Cân nặng theo thang đo (kg)</h2>
             <div className="flex justify-center">
               <table>
                 <thead className="bg-[#005D96] text-white">
                   <tr className="rounded-t-md">
-                    <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 3</th>
-                    <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 2</th>
-                    <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 1</th>
-                    <th className="border-[1px] text-center px-4 py-2">Chuẩn</th>
-                    <th className="border-[1px] text-center px-4 py-2">Tiêu chuẩn 1</th>
-                    <th className="border-[1px] text-center px-4 py-2">Tiêu chuẩn 2</th>
-                    <th className="border-[1px] text-center px-4 py-2">Tiêu chuẩn 3</th>
+                    <th className="border-[1px] text-center p-2">Dưới -2SD <br />(bé đang trong tình trạng suy dinh dưỡng thể thiếu cân hoặc thấp còi)</th>
+                    <th className="border-[1px] text-center p-2">Chuẩn <br />(bé có thể trạng đạt chuẩn trung bình)</th>
+                    <th className="border-[1px] text-center p-2">Trên +2SD <br />(bé đang thừa cân béo phì (theo cân nặng) hoặc rất cao (theo chiều cao))</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
+                    <td className="border-[1px] text-center p-2">
+                      {(Number(data.currentWeight) - dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth)) > 0 ? `Bé nặng hơn mức -2SD: ${(Number(data.currentWeight) - dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth)).toFixed(1)} kg` : `Bé nhẹ hơn mức -2SD: ${(dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth) - Number(data.currentWeight)).toFixed(1)} kg`}
+                    </td>
+                    <td className="border-[1px] text-center p-2">
+                      {(Number(data.currentWeight) - dataCurrentWeight(can_nang_chuan[data.gender], data.date_of_birth)) > 0 ? `Bé nặng hơn mức chuẩn: ${(Number(data.currentWeight) - dataCurrentWeight(can_nang_chuan[data.gender], data.date_of_birth)).toFixed(1)} kg` : `Bé nhẹ hơn mức chuẩn: ${(dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth) - Number(data.currentWeight)).toFixed(1)} kg`}
+                    </td>
+                    <td className="border-[1px] text-center p-2">
+                      {(Number(data.currentWeight) - dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth)) > 0 ? `Bé nặng hơn mức 2SD: ${(Number(data.currentWeight) - dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth)).toFixed(1)} kg` : `Bé nhẹ hơn mức 2SD: ${(dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth) - Number(data.currentWeight)).toFixed(1)} kg`}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -128,20 +134,20 @@ function Details(props: DeleteProductProps) {
                     <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 2</th>
                     <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 1</th>
                     <th className="border-[1px] text-center px-4 py-2">Chuẩn</th>
-                    <th className="border-[1px] text-center px-4 py-2">Tiêu chuẩn 1</th>
-                    <th className="border-[1px] text-center px-4 py-2">Tiêu chuẩn 2</th>
-                    <th className="border-[1px] text-center px-4 py-2">Tiêu chuẩn 3</th>
+                    <th className="border-[1px] text-center px-4 py-2">Trên chuẩn 1</th>
+                    <th className="border-[1px] text-center px-4 py-2">Trên chuẩn 2</th>
+                    <th className="border-[1px] text-center px-4 py-2">Trên chuẩn 3</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
-                    <td className="border-[1px] text-center">8.72</td>
+                    <td className="border-[1px] text-center">{(duoi_chuan_do_3[duoi_chuan_do_3.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(duoi_chuan_do_2[duoi_chuan_do_2.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(duoi_chuan_do_1[duoi_chuan_do_1.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(duong_chieu_cao_chuan[duong_chieu_cao_chuan.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(tren_chuan_do_1[tren_chuan_do_1.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(tren_chuan_do_2[tren_chuan_do_2.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center">{(tren_chuan_do_3[tren_chuan_do_3.length - 1] - resultCalculator?.predictedHeightAt20).toFixed(1)} cm</td>
                   </tr>
                 </tbody>
               </table>
@@ -149,7 +155,7 @@ function Details(props: DeleteProductProps) {
           </div>
         </div>
         <div className=" flex justify-center flex-col">
-          <h2 className="uppercase text-4xl text-center mb-4">Chiều cao theo thang đo (cm)</h2>
+          <h2 className="uppercase text-4xl text-center mb-4">Dinh dưỡng giúp tăng chiều cao tối ưu dành cho trẻ 1-3 tuổi</h2>
           <div className="flex justify-center">
             <table>
               <thead className="bg-liner">
@@ -157,114 +163,73 @@ function Details(props: DeleteProductProps) {
                   <th className="border-[1px] text-center px-4 py-2">Bữa ăn</th>
                   <th className="border-[1px] text-center px-4 py-2">Tỷ lệ %</th>
                   <th className="border-[1px] text-center px-4 py-2">Thành phần</th>
-                  <th className="border-[1px] text-center px-4 py-2">Tỷ lệ %</th>
-                  <th className="border-[1px] text-center px-4 py-2">Lượng calo/ngày</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="bg-[#FFF9DE]">
                   <td className="border-[1px] text-center px-4 py-2">Bữa sáng</td>
-                  <td className="border-[1px] text-center">25%</td>
                   <td className="border-[1px] text-center">
                     <ul>
-                      <li className="border-b-[1px] px-4 py-2">Đạm</li>
-                      <li className="border-b-[1px] px-4 py-2">Đường</li>
-                      <li className="border-b-[1px] px-4 py-2">Béo</li>
-                      <li className="px-4 py-2">1 cốc sữa OZ Farm Kid's Care Plus</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_sang']['1']['menu']}</li>
+                      <li className="px-4 py-2">{data_dinh_duong['bua_sang']['2']['menu']}</li>
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
-                      <li className="border-b-[1px] px-4 py-2">15%</li>
-                      <li className="border-b-[1px] px-4 py-2">35%</li>
-                      <li className="border-b-[1px] px-4 py-2">25%</li>
-                      <li className="px-4 py-2">25%</li>
-                    </ul>
-                  </td>
-                  <td className="border-[1px] text-center">
-                    <ul>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="px-4 py-2">200</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_sang']['1']['nang_luong']}</li>
+                      <li className="px-4 py-2">{data_dinh_duong['bua_sang']['2']['nang_luong']}</li>
                     </ul>
                   </td>
                 </tr>
                 <tr className="bg-[#B6E2FF]">
+                  <td className="border-[1px] text-center px-4 py-2">Bữa phụ sáng</td>
+                  <td className="border-[1px] text-center">
+                    {data_dinh_duong['bua_phu_sang']['1']['menu']}
+                  </td>
+                  <td className="border-[1px] text-center">
+                    {data_dinh_duong['bua_phu_sang']['1']['nang_luong']}
+                  </td>
+                </tr>
+                <tr className="bg-[#FFF9DE]">
                   <td className="border-[1px] text-center px-4 py-2">Bữa trưa</td>
-                  <td className="border-[1px] text-center">30%</td>
                   <td className="border-[1px] text-center">
                     <ul>
-                      <li className="border-b-[1px] px-4 py-2">Đạm</li>
-                      <li className="border-b-[1px] px-4 py-2">Đường</li>
-                      <li className="px-4 py-2">Béo</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_trua']['1']['menu']}</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_trua']['2']['menu']}</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_trua']['3']['menu']}</li>
+                      <li className="px-4 py-2">{data_dinh_duong['bua_trua']['4']['menu']}</li>
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
-                      <li className="border-b-[1px] px-4 py-2">15%</li>
-                      <li className="border-b-[1px] px-4 py-2">35%</li>
-                      <li className="px-4 py-2">25%</li>
-                    </ul>
-                  </td>
-                  <td className="border-[1px] text-center">
-                    <ul>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="px-4 py-2">200</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_trua']['1']['nang_luong']}</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_trua']['2']['nang_luong']}</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_trua']['3']['nang_luong']}</li>
+                      <li className="px-4 py-2">{data_dinh_duong['bua_trua']['4']['nang_luong']}</li>
                     </ul>
                   </td>
                 </tr>
                 <tr className="bg-[#B6E2FF]">
-                  <td className="border-[1px] text-center px-4 py-2">Bữa phụ</td>
-                  <td className="border-[1px] text-center">15%</td>
+                  <td className="border-[1px] text-center px-4 py-2">Bữa phụ chiều</td>
                   <td className="text-center">
-                    <ul>
-                      <li className="border-b-[1px] px-4 py-2">Đạm</li>
-                      <li className="border-b-[1px] px-4 py-2">Đường</li>
-                      <li className="px-4 py-2">Béo</li>
-                    </ul>
+                    {data_dinh_duong['bua_phu_chieu']['1']['menu']}
                   </td>
                   <td className="border-[1px] text-center">
-                    <ul>
-                      <li className="border-b-[1px] px-4 py-2">15%</li>
-                      <li className="border-b-[1px] px-4 py-2">35%</li>
-                      <li className="px-4 py-2">25%</li>
-                    </ul>
-                  </td>
-                  <td className="border-[1px] text-center">
-                    <ul>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="px-4 py-2">200</li>
-                    </ul>
+                    {data_dinh_duong['bua_phu_chieu']['1']['nang_luong']}
                   </td>
                 </tr>
                 <tr className="bg-[#FFF9DE]">
                   <td className="border-[1px] text-center px-4 py-2">Bữa tối</td>
-                  <td className="border-[1px] text-center">25%</td>
                   <td className="border-[1px] text-center">
                     <ul>
-                      <li className="border-b-[1px] px-4 py-2">Đạm</li>
-                      <li className="border-b-[1px] px-4 py-2">Đường</li>
-                      <li className="border-b-[1px] px-4 py-2">Béo</li>
-                      <li className="px-4 py-2">1 cốc sữa OZ Farm Kid's Care Plus</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_toi']['1']['menu']}</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_toi']['2']['menu']}</li>
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
-                      <li className="border-b-[1px] px-4 py-2">15%</li>
-                      <li className="border-b-[1px] px-4 py-2">35%</li>
-                      <li className="border-b-[1px] px-4 py-2">25%</li>
-                      <li className="px-4 py-2">25%</li>
-                    </ul>
-                  </td>
-                  <td className="border-[1px] text-center">
-                    <ul>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="border-b-[1px] px-4 py-2">200</li>
-                      <li className="px-4 py-2">200</li>
+                      <li className="border-b-[1px] px-4 py-2">{data_dinh_duong['bua_toi']['1']['nang_luong']}</li>
+                      <li className="px-4 py-2">{data_dinh_duong['bua_toi']['2']['nang_luong']}</li>
                     </ul>
                   </td>
                 </tr>
@@ -272,12 +237,12 @@ function Details(props: DeleteProductProps) {
             </table>
           </div>
         </div>
-        <div className="flex justify-end mr-8 mt-4">
-          <button onClick={() => toPDF()} className="px-4 py-2 bg-liner rounded-md text-white hover:opacity-85 duration-300 flex justify-center items-center">
-            <span className="mr-2">Tải về</span>
-            <DownloadIcon width={16} height={16} />
-          </button>
-        </div>
+      </div>
+      <div className="flex justify-end mr-8 pb-4">
+        <button onClick={() => toPDF()} className="px-4 py-2 bg-liner rounded-md text-white hover:opacity-85 duration-300 flex justify-center items-center">
+          <span className="mr-2">Tải về</span>
+          <DownloadIcon width={16} height={16} />
+        </button>
       </div>
     </Modal>
   )

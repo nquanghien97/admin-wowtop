@@ -170,7 +170,7 @@ function HeightCalculator() {
     }
   }, [searchForm])
   useEffect(() => {
-    document.title = "Thông tin khách hàng"
+    document.title = "Dự đoán chiều cao"
   }, []);
 
   useEffect(() => {
