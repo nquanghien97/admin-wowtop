@@ -29,7 +29,7 @@ function HeightCalculator() {
   const [data, setData] = useState<HeightCalculatorEntity[]>([]);
   const [paging, setPaging] = useState({
     page: 1,
-    pageSize: 10,
+    pageSize: 1,
     total: 10
   });
   const [openDetailModal, setOpenDetailModal] = useState(false);
@@ -158,30 +158,28 @@ function HeightCalculator() {
   ]
 
   const fetchData = useCallback(async ({ page, pageSize }: { page: number, pageSize: number }) => {
-    setLoading(true);
-    try {
       const res = await getInformations({ page, pageSize, ...searchForm });
-      setData(res.data.data);
-      setPaging(res.data.paging)
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  }, [searchForm])
+      return res
+  }, [searchForm]);
+
   useEffect(() => {
     document.title = "Dự đoán chiều cao"
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     (async () => {
-      await fetchData({ page: 1, pageSize: 10 })
+      const res = await getInformations({ page: paging.page, pageSize: paging.pageSize })
+      setData(res.data.data);
+      setPaging(res.data.paging)
+      setLoading(false)
     })()
-  }, [fetchData, refreshKey]);
+  }, [fetchData, paging.page, paging.pageSize, refreshKey]);
 
   const onChangePaging = async (page: number, pageSize: number) => {
-    setSearchForm({ ...searchForm, page, pageSize: pageSize });
-    await fetchData({ page: page, pageSize: pageSize })
+    setLoading(true);
+    setSearchForm({ ...searchForm, page, pageSize });
+    setPaging(pre => ({ ...pre, page, pageSize }));
   }
 
   return (
