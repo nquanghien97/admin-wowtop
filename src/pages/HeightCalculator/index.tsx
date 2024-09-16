@@ -29,7 +29,7 @@ function HeightCalculator() {
   const [data, setData] = useState<HeightCalculatorEntity[]>([]);
   const [paging, setPaging] = useState({
     page: 1,
-    pageSize: 1,
+    pageSize: 10,
     total: 10
   });
   const [openDetailModal, setOpenDetailModal] = useState(false);
