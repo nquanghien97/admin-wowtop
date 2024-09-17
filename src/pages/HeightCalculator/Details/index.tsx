@@ -6,13 +6,13 @@ import { dataCurrentHeight, heightCalculator } from '../../../utils/heightCalcul
 import { ageCalculator } from '../../../utils/ageCalculator';
 import LineChart from './LineChart';
 import { formatDate } from '../../../utils/formatDate';
-// import { dateToNow } from '../../../utils/dateToNow';
 import { usePDF } from 'react-to-pdf';
 import DownloadIcon from '../../../assets/icons/DownloadIcon';
 import { dataCurrentWeight } from '../../../utils/weightCalculator';
 import { duoi_chuan_do_1, duoi_chuan_do_2, duoi_chuan_do_3, duong_chieu_cao_chuan, tren_chuan_do_1, tren_chuan_do_2, tren_chuan_do_3 } from '../../../config/height';
 import { dinh_duong } from '../../../config/dinh_duong';
 import { can_nang_chuan, lon_hon_TB, nho_hon_TB } from '../../../config/weight';
+import { dateToNow } from '../../../utils/dateToNow';
 
 interface DeleteProductProps {
   open?: boolean;
@@ -37,57 +37,65 @@ function Details(props: DeleteProductProps) {
   }, [id])
   if (!data) return
 
-  const resultCalculator = heightCalculator(data?.currentHeight, ageCalculator(data?.date_of_birth).years, ageCalculator(data?.date_of_birth).months, data.fatherHeight, data.motherHeight, data.gender)
-  const gender = {
+  const resultCalculator = heightCalculator(+data?.currentHeight, ageCalculator(data?.date_of_birth).years, ageCalculator(data?.date_of_birth).months, +data.fatherHeight, +data.motherHeight, data.gender)
+  const genderConfig = {
     BOY: "Nam",
     GIRL: "Nữ"
   }
 
-  console.log(dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth))
-  const data_dinh_duong = data.currentWeight < dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thieu_can'] : (data.currentWeight > dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thua_can'] : dinh_duong['can_nang_chuan'])
+  const data_dinh_duong = +data.currentWeight < dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thieu_can'] : (+data.currentWeight > dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thua_can'] : dinh_duong['can_nang_chuan'])
 
   return (
     <Modal
       open={open}
-      className='!p-0 !w-2/3 !h-screen !top-2'
+      className="!p-0 !w-2/3 !h-screen !top-2"
       onCancel={onCancel}
       footer={false}
       wrapClassName='!p-0'
     >
       <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#0071BA] rounded-t-lg uppercase font-bold text-white">Thông tin chi tiết dự đoán chiều cao</div>
-      <div className="pb-8" ref={targetRef}>
+      <div className="pb-8 bg-[url('/bg-detail.png')] bg-[length:100%_100%]" ref={targetRef}>
         <div className="flex justify-center mb-4">
-          <img src="/logo-mini.png" />
+          <img src="/logo2.png" width={561} height={150} />
         </div>
-        <h1 className="text-center text-5xl text-[#3e5569] mb-8">
+        <h1 className="text-center text-4xl text-[#2074A5] font-bold mb-8">
           Phác đồ dự đoán chiều cao của
           <br />
-          <strong>{data.fullName}</strong>
+          <span className="text-5xl">{data.fullName}</span>
         </h1>
-        <p className="text-center text-3xl text-[#3e5569] mb-8">Mã phác đồ: {data.code}</p>
-        <div className="flex justify-around max-w-xl m-auto">
-          <div className="w-1/2 flex-1">
-            <p className="py-1">Thời gian tạo: {formatDate(data.createdAt)}</p>
-            <p className="py-1">Giới tính: {gender[data.gender]}</p>
-            <p className="py-1">Ngày sinh: {data.date_of_birth}</p>
-            <p className="py-1">Chiều cao: {data.currentHeight} cm</p>
+        <div className="flex justify-around gap-4 max-w-4xl m-auto mb-4">
+          <div className="w-1/2 flex-1 bg-[#92F0F5] p-4 rounded-2xl">
+            <h3 className="uppercase text-2xl text-[#2074A5] text-center mb-4">Thông tin phụ huynh</h3>
+            <div>
+              <p className="pb-1">Họ tên phụ huynh: <span className="text-[#2074A5]">{data.parentName}</span></p>
+              <p className="pb-1">Số điện thoại: <span className="text-[#2074A5]">{data.phoneNumber}</span></p>
+              <p className="pb-1">Địa chỉ: <span className="text-[#2074A5]">{`${data.address}, ${data.ward}, ${data.district}, ${data.province}`}</span></p>
+              <p className="pb-1">Chiều cao của bố: <span className="text-[#2074A5]">{data.fatherHeight} cm</span></p>
+              <p className="pb-1">Chiều cao của mẹ: <span className="text-[#2074A5]">{data.motherHeight} cm</span></p>
+              <p className="pb-1">Ngày lập phác đồ: <span className="text-[#2074A5]">{formatDate(data.createdAt)}</span></p>
+              <p className="pt-1">Mã phác đồ: <span className="text-[#2074A5]">{data.code}</span></p>
+            </div>
           </div>
-          <div className="w-1/2 flex-1">
-            <p className="py-1">Cân nặng: {data.currentWeight} kg</p>
-            <p className="py-1"></p>
+          <div className="w-1/2 flex-1 bg-[#92F0F5] p-4 rounded-2xl">
+            <h3 className="uppercase text-2xl text-[#2074A5] text-center mb-4">Thông tin của con</h3>
+            <div>
+              <p className="pb-1">Họ tên: <span className="text-[#2074A5]">{data.fullName}</span></p>
+              <p className="pb-1">Giới tính: <span className="text-[#2074A5]">{genderConfig[data.gender]}</span></p>
+              <p className="pb-1">Ngày sinh: <span className="text-[#2074A5]">{data.date_of_birth}</span></p>
+              <p className="pb-1">Tuổi: <span className="text-[#2074A5]">{dateToNow(data.date_of_birth)}</span></p>
+              <p className="pb-1">Chiều cao hiện tại: <span className="text-[#2074A5]">{data.currentHeight} cm</span></p>
+              <p className="pb-1">Cân nặng hiện tại: <span className="text-[#2074A5]">{data.currentWeight} kg</span></p>
+              <p className="pt-1">Hiện bé đang sử dụng sản phẩm chiều cao: <span className="text-[#2074A5]">{data.currentProduct}</span></p>
+              <p className="pb-1">Thời gian vận động: <span className="text-[#2074A5]">{data.sport}</span></p>
+              <p className="pb-1">Thời gian ngủ: <span className="text-[#2074A5]">{data.timeSleep}</span></p>
+            </div>
           </div>
         </div>
-        <h2 className="uppercase text-4xl font-bold text-center text-[#3e5569]">Kết quả</h2>
-        <div className="max-w-4xl m-auto h-[900px]">
+        <h2 className="uppercase text-4xl font-bold text-center text-[#2074A5]">Kết quả</h2>
+        <div className="max-w-4xl m-auto h-[900px] mb-4">
           <LineChart dataLine={resultCalculator?.heightsByAge as number[]} />
         </div>
         <div className="max-w-xl m-auto">
-          {/* <div className="w-2/3 flex justify-center mt-8">
-            <div className="mb-8 text-[#3e5569]">
-              <p><strong>Tuổi (đến thời gian tạo phác đồ): </strong><span className="text-[#7F4806]">{dateToNow(data.date_of_birth)}</span></p>
-              <p><strong>Dự báo chiều cao tuổi 20: </strong><span className="text-[#7F4806]">{resultCalculator?.heightsByAge[20]} cm</span></p>
-            </div>
-          </div> */}
           <div className="text-[#3e5569]">
             <p className="text-center mb-8">Đây là kết quả dự đoán chiều cao dựa trên số đo, độ tuổi, giới tính và sinh hoạt hiện tại, thực tế có thể thay đổi
               phụ thuộc vào chế độ sinh hoạt, tập luyện và dinh dưỡng của con.</p>
@@ -98,7 +106,7 @@ function Details(props: DeleteProductProps) {
         <p className="text-center text-[#3e5569] mb-8">Vào Group <a className="underline" href='/'><strong>"CHO CON CAO LỚN TRƯỞNG THÀNH TẬN CÙNG"</strong></a> để cập nhật các phương pháp tăng chiều cao khoa học nhất.</p>
         <div className="mb-8 max-w-5xl m-auto">
           <div className="mb-4">
-            <h2 className="uppercase text-2xl text-center mb-4">Cân nặng theo thang đo (kg)</h2>
+            <h2 className="uppercase text-2xl text-center mb-4 font-bold text-[#2074A5]">Cân nặng theo thang đo (kg)</h2>
             <div className="flex justify-center">
               <table>
                 <thead className="bg-[#005D96] text-white">
@@ -125,10 +133,10 @@ function Details(props: DeleteProductProps) {
             </div>
           </div>
           <div className=" flex justify-center flex-col">
-            <h2 className="uppercase text-2xl text-center mb-4">Chiều cao theo thang đo (cm)</h2>
+            <h2 className="uppercase text-2xl text-center mb-4 font-bold text-[#2074A5]">Chiều cao theo thang đo (cm)</h2>
             <div className="flex justify-center">
               <table>
-                <thead className="bg-[#6BBAF9]">
+                <thead className="bg-[#6BBAF9] text-white">
                   <tr>
                     <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 3</th>
                     <th className="border-[1px] text-center px-4 py-2">Dưới chuẩn 2</th>
@@ -141,13 +149,13 @@ function Details(props: DeleteProductProps) {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duoi_chuan_do_3, data.date_of_birth)).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duoi_chuan_do_2, data.date_of_birth)).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duoi_chuan_do_1, data.date_of_birth)).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(duong_chieu_cao_chuan, data.date_of_birth)).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(tren_chuan_do_1, data.date_of_birth)).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(tren_chuan_do_2, data.date_of_birth)).toFixed(1)} cm</td>
-                    <td className="border-[1px] text-center">{(data.currentHeight - dataCurrentHeight(tren_chuan_do_3, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(duoi_chuan_do_3, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(duoi_chuan_do_2, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(duoi_chuan_do_1, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(duong_chieu_cao_chuan, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(tren_chuan_do_1, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(tren_chuan_do_2, data.date_of_birth)).toFixed(1)} cm</td>
+                    <td className="border-[1px] text-center py-2">{(+data.currentHeight - dataCurrentHeight(tren_chuan_do_3, data.date_of_birth)).toFixed(1)} cm</td>
                   </tr>
                 </tbody>
               </table>
@@ -155,14 +163,14 @@ function Details(props: DeleteProductProps) {
           </div>
         </div>
         <div className=" flex justify-center flex-col">
-          <h2 className="uppercase text-4xl text-center mb-4">Dinh dưỡng giúp tăng chiều cao tối ưu dành cho trẻ 1-3 tuổi</h2>
+          <h2 className="uppercase text-4xl text-center mb-4 font-bold text-[#2074A5]">Dinh dưỡng giúp tăng chiều cao tối ưu dành cho trẻ 1-3 tuổi</h2>
           <div className="flex justify-center">
             <table>
               <thead className="bg-liner">
                 <tr>
                   <th className="border-[1px] text-center px-4 py-2">Bữa ăn</th>
-                  <th className="border-[1px] text-center px-4 py-2">Tỷ lệ %</th>
-                  <th className="border-[1px] text-center px-4 py-2">Thành phần</th>
+                  <th className="border-[1px] text-center px-4 py-2">Menu</th>
+                  <th className="border-[1px] text-center px-4 py-2">Năng lượng (Kcal)</th>
                 </tr>
               </thead>
               <tbody>

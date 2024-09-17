@@ -58,13 +58,13 @@ function HeightCalculator() {
       width: 150
     },
     {
-      title: "Cân nặng bố (kg)",
+      title: "Chiều cao bố (cm)",
       dataIndex: "fatherHeight",
       key: 4,
       width: 100
     },
     {
-      title: "Cân nặng mẹ (kg)",
+      title: "Chiều cao mẹ (cm)",
       dataIndex: "motherHeight",
       key: 6,
       width: 100

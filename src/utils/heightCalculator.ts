@@ -22,7 +22,6 @@ export function heightCalculator(
 
   // Determine the height increase array based on gender
   const heightIncrease = gender === "BOY" ? heightIncreasePerYear.BOY : heightIncreasePerYear.GIRL;
-
   // Initialize array to store heights for each age
   const heightsByAge = new Array(21).fill('0'); // Default to '0' for all ages initially
 
@@ -44,9 +43,9 @@ export function heightCalculator(
   // Calculate final height at 20 based on parents' height
   let finalHeight;
   if (gender === "BOY") {
-    finalHeight = ((fatherHeight + motherHeight) * 1.08) / 2;
+    finalHeight = ((+fatherHeight + +motherHeight) * 1.08) / 2;
   } else {
-    finalHeight = ((fatherHeight * 0.923) + motherHeight) / 2;
+    finalHeight = ((+fatherHeight * 0.923) + +motherHeight) / 2;
   }
 
   // Ensure that height from 18 to 20 is correctly adjusted

@@ -21,3 +21,8 @@
   background: linear-gradient(to right, #0ea8b0, #3bbcc2, #83dce0, #42cfd8, #1dc4cd, #0db5c0);
 }
 
+.ant-modal-content {
+  background-image: url('/bg-detail.png') !important;
+  background-size: 100% 100%;
+}
+

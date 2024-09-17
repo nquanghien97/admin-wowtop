@@ -180,9 +180,10 @@ const LineChart = (props: { dataLine: number[] }) => {
         display: true,
         text: 'BẢNG DỰ ĐOÁN CHIỀU CAO ĐẾN TUỔI TRƯỞNG THÀNH',
         font: {
-          size: 36,
+          size: 30,
           weight: 'bold' as const,
-        }
+        },
+        color: '#2074A5'
       },
     },
     scales: {

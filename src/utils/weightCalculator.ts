@@ -15,7 +15,7 @@ export function weightCalculator({ currentWeight, date_of_birth, gender } : { cu
   }
 
   const weightIncrease = gender === "BOY" ? weightIncreasePerYear.BOY : weightIncreasePerYear.GIRL;
-  const weightInNextYear = currentWeight + (weightIncrease[currentYear+1] * (12 - currentMonth)) / 12;
+  const weightInNextYear = +currentWeight + (weightIncrease[currentYear+1] * (12 - currentMonth)) / 12;
   let finalWeight = weightInNextYear
   for(let year = currentYear + 2; year <= 20; year++) {
     finalWeight += weightIncrease[year]
