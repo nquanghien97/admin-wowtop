@@ -58,10 +58,10 @@ function Details(props: DeleteProductProps) {
         <div className="flex justify-center mb-4">
           <img src="/logo2.png" width={561} height={150} />
         </div>
-        <h1 className="text-center text-4xl text-[#2074A5] font-bold mb-8">
+        <h1 className="text-center text-4xl text-[#2074A5] font-bold mb-8 uppercase">
           Phác đồ dự đoán chiều cao của
           <br />
-          <span className="text-5xl">{data.fullName}</span>
+          <p className="text-5xl mt-4">{data.fullName}</p>
         </h1>
         <div className="flex justify-around gap-4 max-w-4xl m-auto mb-4">
           <div className="w-1/2 flex-1 bg-[#92F0F5] p-4 rounded-2xl">
@@ -163,7 +163,7 @@ function Details(props: DeleteProductProps) {
           </div>
         </div>
         <div className=" flex justify-center flex-col">
-          <h2 className="uppercase text-4xl text-center mb-4 font-bold text-[#2074A5]">Dinh dưỡng giúp tăng chiều cao tối ưu dành cho trẻ 1-3 tuổi</h2>
+          <h2 className="uppercase text-2xl text-center mb-4 font-bold text-[#2074A5]">Dinh dưỡng giúp tăng chiều cao tối ưu dành cho trẻ 1-3 tuổi</h2>
           <div className="flex justify-center">
             <table>
               <thead className="bg-liner">

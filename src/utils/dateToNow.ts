@@ -21,5 +21,5 @@ export function dateToNow(startDate: string) {
       months += 12;
   }
 
-  return `${years} năm ${months} tháng ${days} ngày`;
+  return `${years} tuổi ${months} tháng ${days} ngày`;
 }
