@@ -13,6 +13,7 @@ import { duoi_chuan_do_1, duoi_chuan_do_2, duoi_chuan_do_3, duong_chieu_cao_chua
 import { dinh_duong } from '../../../config/dinh_duong';
 import { can_nang_chuan, lon_hon_TB, nho_hon_TB } from '../../../config/weight';
 import { dateToNow } from '../../../utils/dateToNow';
+import { case_comment } from '../../../config/case_comment';
 
 interface DeleteProductProps {
   open?: boolean;
@@ -45,6 +46,17 @@ function Details(props: DeleteProductProps) {
 
   const data_dinh_duong = +data.currentWeight < dataCurrentWeight(nho_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thieu_can'] : (+data.currentWeight > dataCurrentWeight(lon_hon_TB[data.gender], data.date_of_birth) ? dinh_duong['thua_can'] : dinh_duong['can_nang_chuan'])
 
+  //nhận xét
+  const getComment = () => {
+    const matchedCondition = case_comment(dataCurrentHeight(duong_chieu_cao_chuan, data.date_of_birth), dataCurrentWeight(can_nang_chuan[data.gender], data.date_of_birth)).find(condition => condition.condition({
+      currentHeight: +12,
+      currentAge: ageCalculator(data.date_of_birth).years,
+      currentWeight: +1,
+      gender: data.gender
+    }))
+    return matchedCondition?.content
+  }
+  console.log(getComment())
   return (
     <Modal
       open={open}
@@ -92,7 +104,7 @@ function Details(props: DeleteProductProps) {
           </div>
         </div>
         <h2 className="uppercase text-4xl font-bold text-center text-[#2074A5]">Kết quả</h2>
-        <div className="max-w-4xl m-auto h-[900px] mb-4">
+        <div className="max-w-4xl m-auto h-[600px] mb-4">
           <LineChart dataLine={resultCalculator?.heightsByAge as number[]} />
         </div>
         <div className="max-w-xl m-auto">
@@ -104,7 +116,7 @@ function Details(props: DeleteProductProps) {
           </div>
         </div>
         <p className="text-center text-[#3e5569] mb-8">Vào Group <a className="underline" href='/'><strong>"CHO CON CAO LỚN TRƯỞNG THÀNH TẬN CÙNG"</strong></a> để cập nhật các phương pháp tăng chiều cao khoa học nhất.</p>
-        <div className="mb-8 max-w-5xl m-auto">
+        <div className="mb-4 max-w-5xl m-auto">
           <div className="mb-4">
             <h2 className="uppercase text-2xl text-center mb-4 font-bold text-[#2074A5]">Cân nặng theo thang đo (kg)</h2>
             <div className="flex justify-center">
@@ -161,6 +173,18 @@ function Details(props: DeleteProductProps) {
               </table>
             </div>
           </div>
+        </div>
+        <div className="mb-8 max-w-5xl m-auto">
+          <p className="italic text-center">Đây là kết quả dự đoán chiều cao dựa trên số đo, độ tuổi, giới tính và sinh hoạt hiện tại, thực tế có thể thay đổi phụ thuộc vào chế độ sinh hoạt, tập luyện và dinh dưỡng của con.</p>
+        </div>
+        <div className="mb-8 max-w-5xl m-auto text-center bg-liner rounded-2xl py-4">
+          <h3>Nhận xét</h3>
+          <p><strong>Chiều cao</strong> và <strong>cân nặng</strong> của con <strong>thấp hơn chỉ số tiêu chuẩn.</strong></p>
+          <p>Dự báo chiều cao tuổi 20: ...</p>
+        </div>
+        <div className="mb-8 max-w-5xl m-auto">
+          <h3 className="uppercase">Lời khuyên dành cho bố mẹ</h3>
+          {getComment()}
         </div>
         <div className=" flex justify-center flex-col">
           <h2 className="uppercase text-2xl text-center mb-4 font-bold text-[#2074A5]">Dinh dưỡng giúp tăng chiều cao tối ưu dành cho trẻ 1-3 tuổi</h2>
