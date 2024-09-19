@@ -57,7 +57,6 @@ function Details(props: DeleteProductProps) {
     }))
     return matchedCondition?.content
   }
-  console.log(getComment())
   return (
     <Modal
       open={open}

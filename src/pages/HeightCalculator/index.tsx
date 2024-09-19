@@ -3,20 +3,11 @@ import Header from './Header'
 import { Button, ConfigProvider, Table, TableColumnsType } from 'antd'
 import CloseIcon from '../../assets/icons/CloseIcon'
 import { HeightCalculatorEntity } from '../../entities/HeightCalculator'
-import { getInformations } from '../../services/heightCalculator'
+import { getInformations, SearchFormType } from '../../services/heightCalculator'
 import DataIcon from '../../assets/icons/DataIcon'
 import withAuth from '../../hocs/withAuth'
 import Details from './Details'
 import Delete from './actions/Delete';
-
-export interface SearchFormType {
-  page?: number;
-  pageSize?: number;
-  code?: string;
-  phoneNumber?: string;
-  parentName?: string;
-  fullName?: string;
-}
 
 const optionsGender = {
   GIRL: "Nữ",
@@ -36,7 +27,14 @@ function HeightCalculator() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [id, setId] = useState(0);
   const [refreshKey, setRefreshKey] = useState(false);
-  const [searchForm, setSearchForm] = useState<SearchFormType>()
+  const [searchForm, setSearchForm] = useState<SearchFormType>({
+    page: 1,
+    pageSize: 1,
+    code: '',
+    phoneNumber: '',
+    parentName: '',
+    fullName: ''
+  })
 
   const columns: TableColumnsType<HeightCalculatorEntity> = [
     {
@@ -157,7 +155,7 @@ function HeightCalculator() {
     }
   ]
 
-  const fetchData = useCallback(async ({ page, pageSize }: { page: number, pageSize: number }) => {
+  const fetchData = useCallback(async ({ page, pageSize }: { page?: number, pageSize?: number }) => {
       const res = await getInformations({ page, pageSize, ...searchForm });
       return res
   }, [searchForm]);
@@ -169,17 +167,16 @@ function HeightCalculator() {
   useEffect(() => {
     setLoading(true);
     (async () => {
-      const res = await getInformations({ page: paging.page, pageSize: paging.pageSize })
+      const res = await getInformations(searchForm)
       setData(res.data.data);
       setPaging(res.data.paging)
       setLoading(false)
     })()
-  }, [fetchData, paging.page, paging.pageSize, refreshKey]);
+  }, [fetchData, refreshKey, searchForm]);
 
   const onChangePaging = async (page: number, pageSize: number) => {
     setLoading(true);
     setSearchForm({ ...searchForm, page, pageSize });
-    setPaging(pre => ({ ...pre, page, pageSize }));
   }
 
   return (

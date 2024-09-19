@@ -1,6 +1,15 @@
 import api from "../config/api";
 
-export function getInformations({ page = 1, pageSize = 10, code, fullName, phoneNumber, parentName }: { page?: number, pageSize?: number, code?: string, fullName?: string, phoneNumber?: string, parentName?: string }) {
+export interface SearchFormType {
+  page?: number;
+  pageSize?: number;
+  code?: string;
+  phoneNumber?: string;
+  parentName?: string;
+  fullName?: string;
+}
+
+export function getInformations({ page, pageSize, code, fullName, phoneNumber, parentName }: SearchFormType) {
   const params = new URLSearchParams();
   if (page) params.append('page', page.toString());
   if (pageSize) params.append('pageSize', pageSize.toString());
