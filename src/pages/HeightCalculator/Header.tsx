@@ -1,11 +1,10 @@
 import { Button, Form, Input, Tooltip } from "antd";
 import SearchIcon from "../../assets/icons/SearchIcon";
-import { SearchFormType } from ".";
-import { getInformations } from "../../services/heightCalculator";
+import { getInformations, SearchFormType } from "../../services/heightCalculator";
 import { HeightCalculatorEntity } from "../../entities/HeightCalculator";
 
 interface HeaderProps {
-  setSearchForm: React.Dispatch<React.SetStateAction<SearchFormType | undefined>>
+  setSearchForm: React.Dispatch<React.SetStateAction<SearchFormType>>
   setData: React.Dispatch<React.SetStateAction<HeightCalculatorEntity[]>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
