@@ -78,8 +78,8 @@ function Details(props: DeleteProductProps) {
         </h1>
         <div className="flex justify-around gap-4 max-w-4xl m-auto mb-4">
           <div className="w-1/2 flex-1 bg-[#92F0F5] p-4 rounded-2xl">
-            <h3 className="uppercase text-2xl text-[#2074A5] text-center mb-4">Thông tin phụ huynh</h3>
-            <div>
+            <h3 className="uppercase text-2xl text-[#2074A5] text-center mb-4 font-semibold">Thông tin phụ huynh</h3>
+            <div className="font-semibold">
               <p className="pb-1">Họ tên phụ huynh: <span className="text-[#2074A5]">{data.parentName}</span></p>
               <p className="pb-1">Số điện thoại: <span className="text-[#2074A5]">{data.phoneNumber}</span></p>
               <p className="pb-1">Địa chỉ: <span className="text-[#2074A5]">{`${data.address}, ${data.ward}, ${data.district}, ${data.province}`}</span></p>
@@ -90,8 +90,8 @@ function Details(props: DeleteProductProps) {
             </div>
           </div>
           <div className="w-1/2 flex-1 bg-[#92F0F5] p-4 rounded-2xl">
-            <h3 className="uppercase text-2xl text-[#2074A5] text-center mb-4">Thông tin của con</h3>
-            <div>
+            <h3 className="uppercase text-2xl text-[#2074A5] text-center mb-4 font-semibold">Thông tin của con</h3>
+            <div className="font-semibold">
               <p className="pb-1">Họ tên: <span className="text-[#2074A5]">{data.fullName}</span></p>
               <p className="pb-1">Giới tính: <span className="text-[#2074A5]">{genderConfig[data.gender]}</span></p>
               <p className="pb-1">Ngày sinh: <span className="text-[#2074A5]">{data.date_of_birth}</span></p>
@@ -108,15 +108,6 @@ function Details(props: DeleteProductProps) {
         <div className="max-w-4xl m-auto h-[500px] mb-4">
           <LineChart dataLine={resultCalculator?.heightsByAge as number[]} />
         </div>
-        <div className="max-w-4xl m-auto">
-          <div className="text-[#3e5569]">
-            <p className="text-center mb-8">Đây là kết quả dự đoán chiều cao dựa trên số đo, độ tuổi, giới tính và sinh hoạt hiện tại, thực tế có thể thay đổi
-              phụ thuộc vào chế độ sinh hoạt, tập luyện và dinh dưỡng của con.</p>
-            <p className="text-center">Bổ sung <strong>CBP, CPP</strong> giúp <strong>xây dựng khung xương dài ra và tăng cường khả năng hấp thụ canxi cùng các
-              dưỡng chất thiết yếu</strong> cho tăng trưởng và giúp xương chắc khỏe hơn, để <strong>con đạt chiều cao tối ưu.</strong></p>
-          </div>
-        </div>
-        <p className="text-center text-[#3e5569] mb-8">Vào Group <a className="underline" href='/'><strong>"CHO CON CAO LỚN TRƯỞNG THÀNH TẬN CÙNG"</strong></a> để cập nhật các phương pháp tăng chiều cao khoa học nhất.</p>
         <div className="mb-4 max-w-4xl m-auto">
           <div className="mb-4">
             <h2 className="text-xl text-center mb-4 font-bold text-[#2074A5]">CÂN NẶNG THEO THANG ĐO (kg)</h2>
