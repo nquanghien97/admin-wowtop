@@ -29,7 +29,7 @@ function HeightCalculator() {
   const [refreshKey, setRefreshKey] = useState(false);
   const [searchForm, setSearchForm] = useState<SearchFormType>({
     page: 1,
-    pageSize: 1,
+    pageSize: 10,
     code: '',
     phoneNumber: '',
     parentName: '',
