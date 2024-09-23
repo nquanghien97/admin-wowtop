@@ -39,7 +39,6 @@ function Details(props: DeleteProductProps) {
   if (!data) return
 
   const resultCalculator = heightCalculator(+data?.currentHeight, ageCalculator(data?.date_of_birth).years, ageCalculator(data?.date_of_birth).months, +data.fatherHeight, +data.motherHeight, data.gender)
-  console.log(resultCalculator)
   const genderConfig = {
     BOY: "Nam",
     GIRL: "Nữ"

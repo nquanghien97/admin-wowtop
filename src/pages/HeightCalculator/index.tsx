@@ -176,8 +176,9 @@ function HeightCalculator() {
 
   const onChangePaging = async (page: number, pageSize: number) => {
     setLoading(true);
-    setSearchForm({ page, pageSize, ...searchForm });
+    setSearchForm({ ...searchForm, page, pageSize });
   }
+  console.log(searchForm)
 
   return (
     <div className="px-4">
