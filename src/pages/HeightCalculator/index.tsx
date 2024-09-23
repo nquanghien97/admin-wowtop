@@ -163,7 +163,6 @@ function HeightCalculator() {
   useEffect(() => {
     document.title = "Dự đoán chiều cao"
   }, []);
-  console.log(searchForm)
 
   useEffect(() => {
     setLoading(true);
@@ -182,7 +181,7 @@ function HeightCalculator() {
 
   return (
     <div className="px-4">
-      <Header setSearchForm={setSearchForm} setData={setData} setLoading={setLoading} />
+      <Header setSearchForm={setSearchForm} setLoading={setLoading} />
       <div>
         <ConfigProvider
           theme={{

@@ -39,6 +39,7 @@ function Details(props: DeleteProductProps) {
   if (!data) return
 
   const resultCalculator = heightCalculator(+data?.currentHeight, ageCalculator(data?.date_of_birth).years, ageCalculator(data?.date_of_birth).months, +data.fatherHeight, +data.motherHeight, data.gender)
+  console.log(resultCalculator)
   const genderConfig = {
     BOY: "Nam",
     GIRL: "Nữ"
@@ -105,7 +106,7 @@ function Details(props: DeleteProductProps) {
         </div>
         <h2 className="uppercase text-4xl font-bold text-center text-[#2074A5]">Kết quả</h2>
         <div className="max-w-4xl m-auto h-[500px] mb-4">
-          <LineChart dataLine={resultCalculator?.heightsByAge as number[]} />
+          <LineChart dataLine={resultCalculator?.heightsByAge as number[]} date_of_birth={data.date_of_birth} />
         </div>
         <div className="mb-4 max-w-4xl m-auto">
           <div className="mb-4">
@@ -214,14 +215,14 @@ function Details(props: DeleteProductProps) {
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_sang'].map(item => (
-                        <li className="px-4 py-2">{item.menu}</li>
+                        <li key={item.menu} className="px-4 py-2">{item.menu}</li>
                       ))}
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_sang'].map(item => (
-                        <li className="px-4 py-2">{item.nang_luong}</li>
+                        <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
                       ))}
                     </ul>
                   </td>
@@ -240,14 +241,14 @@ function Details(props: DeleteProductProps) {
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_trua'].map(item => (
-                        <li className="px-4 py-2">{item.menu}</li>
+                        <li key={item.menu} className="px-4 py-2">{item.menu}</li>
                       ))}
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_trua'].map(item => (
-                        <li className="px-4 py-2">{item.nang_luong}</li>
+                        <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
                       ))}
                     </ul>
                   </td>
@@ -266,14 +267,14 @@ function Details(props: DeleteProductProps) {
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_toi'].map(item => (
-                        <li className="px-4 py-2">{item.menu}</li>
+                        <li key={item.menu} className="px-4 py-2">{item.menu}</li>
                       ))}
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_toi'].map(item => (
-                        <li className="px-4 py-2">{item.nang_luong}</li>
+                        <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
                       ))}
                     </ul>
                   </td>

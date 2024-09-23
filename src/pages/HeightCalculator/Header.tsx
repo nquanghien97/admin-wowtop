@@ -1,29 +1,20 @@
 import { Button, Form, Input, Tooltip } from "antd";
 import SearchIcon from "../../assets/icons/SearchIcon";
-import { getInformations, SearchFormType } from "../../services/heightCalculator";
-import { HeightCalculatorEntity } from "../../entities/HeightCalculator";
+import { SearchFormType } from "../../services/heightCalculator";
 
 interface HeaderProps {
   setSearchForm: React.Dispatch<React.SetStateAction<SearchFormType>>
-  setData: React.Dispatch<React.SetStateAction<HeightCalculatorEntity[]>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Header(props: HeaderProps) {
-  const { setSearchForm, setData, setLoading } = props;
+  const { setSearchForm, setLoading } = props;
   const [form] = Form.useForm();
 
   const onFinish = async (data: SearchFormType) => {
     setLoading(true);
-    setSearchForm(pre => ({...pre, data}));
-    try {
-      const res = await getInformations(data);
-      setData(res.data.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false)
-    }
+    setSearchForm(pre => ({...pre, ...data}));
+    console.log(data)
   }
 
   return (
@@ -37,6 +28,7 @@ function Header(props: HeaderProps) {
             placeholder="Mã Phác Đồ"
             className="py-2"
             rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            allowClear
           />
         </Form.Item>
         <Form.Item
@@ -47,6 +39,7 @@ function Header(props: HeaderProps) {
             placeholder="Số điện thoại"
             className="py-2"
             rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            allowClear
           />
         </Form.Item>
         <Form.Item
@@ -57,6 +50,7 @@ function Header(props: HeaderProps) {
             placeholder="Họ tên phụ huynh"
             className="py-2"
             rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            allowClear
           />
         </Form.Item>
         <Form.Item
@@ -67,6 +61,7 @@ function Header(props: HeaderProps) {
             placeholder="Họ tên con"
             className="py-2"
             rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            allowClear
           />
         </Form.Item>
         <Form.Item>

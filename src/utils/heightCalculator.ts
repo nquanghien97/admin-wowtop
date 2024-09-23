@@ -11,8 +11,8 @@ export function heightCalculator(
 ) {
   // Height increase per year based on the provided table for boys and girls
   const heightIncreasePerYear = {
-    GIRL: [0, 12.4, 8.7, 7.6, 6.7, 5.7, 5.7, 5.8, 5.9, 6.1, 6.2, 6.7, 5.6, 3.3, 1.7, 0.6, 0.7, 0.3, 0],
-    BOY:  [0, 11.4, 9, 7.2, 6.7, 6, 5.7, 5.6, 5.3, 5.2, 5.3, 6, 6.9, 7.2, 5.8, 3.9, 2.3, 0.9, 0]
+    GIRL: [0, 12.4, 8.7, 7.6, 6.7, 5.7, 5.7, 5.8, 5.9, 6.1, 6.2, 6.7, 5.6, 3.3, 1.7, 0.6, 0.7, 0.3, 0, 0, 0],
+    BOY:  [0, 11.4, 9.0, 7.2, 6.7, 6.0, 5.7, 5.6, 5.3, 5.2, 5.3, 6.0, 6.9, 7.2, 5.8, 3.9, 2.3, 0.9, 0, 0, 0]
   };
 
   // Ensure the age is within the supported range
@@ -50,7 +50,9 @@ export function heightCalculator(
 
   // Ensure that height from 18 to 20 is correctly adjusted
   for (let year = 18; year <= 20; year++) {
-    heightsByAge[year] = finalHeight.toFixed(1);
+    if(finalHeight >= heightsByAge[18]) {
+      heightsByAge[year] = finalHeight.toFixed(1);
+    }
   }
 
   return {

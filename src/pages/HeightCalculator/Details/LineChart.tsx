@@ -22,6 +22,7 @@ import {
   tren_chuan_do_3,
   tren_chuan_do_4
 } from '../../../config/height';
+import { ageCalculator } from '../../../utils/ageCalculator';
 
 // Đăng ký các thành phần mà Chart.js sử dụng
 ChartJS.register(
@@ -35,15 +36,18 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const LineChart = (props: { dataLine: number[] }) => {
-  const { dataLine } = props;
+const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
+  const { dataLine, date_of_birth } = props;
   // Dữ liệu cho biểu đồ
+  const year = ageCalculator(date_of_birth).years
+  const sliceData = (data: number[]) => data.slice(year)
+  const labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
   const data: ChartData<"line", number[], string> = {
-    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
+    labels: labels.slice(year),
     datasets: [
       {
         label: 'Đường chiều cao của con',
-        data: dataLine,
+        data: sliceData(dataLine),
         fill: false,
         borderColor: '#006cd8',
         tension: 0.1,
@@ -60,7 +64,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Đường chiều cao chuẩn',
-        data: duong_chieu_cao_chuan,
+        data: sliceData(duong_chieu_cao_chuan),
         fill: false,
         borderColor: '#a082e8',
         tension: 0.1,
@@ -72,7 +76,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Dưới chuẩn độ 4',
-        data: duoi_chuan_do_4,
+        data: sliceData(duoi_chuan_do_4),
         fill: false,
         borderColor: '#ee2820',
         tension: 0.1,
@@ -84,7 +88,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Dưới chuẩn độ 3',
-        data: duoi_chuan_do_3,
+        data: sliceData(duoi_chuan_do_3),
         fill: false,
         borderColor: '#b20400',
         tension: 0.1,
@@ -96,7 +100,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Dưới chuẩn độ 2',
-        data: duoi_chuan_do_2,
+        data: sliceData(duoi_chuan_do_2),
         fill: false,
         borderColor: '#ef8e00',
         tension: 0.1,
@@ -108,7 +112,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Dưới chuẩn độ 1',
-        data: duoi_chuan_do_1,
+        data: sliceData(duoi_chuan_do_1),
         fill: false,
         borderColor: '#ffd655',
         tension: 0.1,
@@ -120,7 +124,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Trên chuẩn độ 1',
-        data: tren_chuan_do_1,
+        data: sliceData(tren_chuan_do_1),
         fill: false,
         borderColor: '#beea53',
         tension: 0.1,
@@ -132,7 +136,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Trên chuẩn độ 2',
-        data: tren_chuan_do_2,
+        data: sliceData(tren_chuan_do_2),
         fill: false,
         borderColor: '#4a9e2b',
         tension: 0.1,
@@ -144,7 +148,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Trên chuẩn độ 3',
-        data: tren_chuan_do_3,
+        data: sliceData(tren_chuan_do_3),
         fill: false,
         borderColor: '#1e7a00',
         tension: 0.1,
@@ -156,7 +160,7 @@ const LineChart = (props: { dataLine: number[] }) => {
       },
       {
         label: 'Trên chuẩn độ 4',
-        data: tren_chuan_do_4,
+        data: sliceData(tren_chuan_do_4),
         fill: false,
         borderColor: '#6bbaf9',
         tension: 0.1,
