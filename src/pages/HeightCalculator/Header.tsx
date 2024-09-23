@@ -15,7 +15,7 @@ function Header(props: HeaderProps) {
 
   const onFinish = async (data: SearchFormType) => {
     setLoading(true);
-    setSearchForm(data);
+    setSearchForm(pre => ({...pre, data}));
     try {
       const res = await getInformations(data);
       setData(res.data.data);

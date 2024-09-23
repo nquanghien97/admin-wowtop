@@ -163,6 +163,7 @@ function HeightCalculator() {
   useEffect(() => {
     document.title = "Dự đoán chiều cao"
   }, []);
+  console.log(searchForm)
 
   useEffect(() => {
     setLoading(true);
@@ -176,7 +177,7 @@ function HeightCalculator() {
 
   const onChangePaging = async (page: number, pageSize: number) => {
     setLoading(true);
-    setSearchForm({ ...searchForm, page, pageSize });
+    setSearchForm({ page, pageSize, ...searchForm });
   }
 
   return (
