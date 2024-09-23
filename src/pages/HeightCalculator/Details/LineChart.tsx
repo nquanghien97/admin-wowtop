@@ -59,7 +59,7 @@ const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
           borderColor: '#006cd8',
           font: {
             weight: 'bold',
-          }
+          },
         },
       },
       {
@@ -102,10 +102,10 @@ const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
         label: 'Dưới chuẩn độ 2',
         data: sliceData(duoi_chuan_do_2),
         fill: false,
-        borderColor: '#ef8e00',
+        borderColor: '#ab6702',
         tension: 0.1,
         pointRadius: 0,
-        backgroundColor: '#ef8e00',
+        backgroundColor: '#ab6702',
         datalabels: {
           display: false
         }
@@ -120,7 +120,7 @@ const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
         backgroundColor: '#ffd655',
         datalabels: {
           display: false
-        }
+        },
       },
       {
         label: 'Trên chuẩn độ 1',
@@ -196,6 +196,7 @@ const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
           display: true,
           text: 'Tuổi',
         },
+        offset: true, // Thêm khoảng trống ở đầu và cuối của trục X
       },
       y: {
         title: {
