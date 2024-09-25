@@ -172,7 +172,7 @@ function Details(props: DeleteProductProps) {
           <h3 className="uppercase text-[#005D96] font-bold">Nhận xét</h3>
           <p className="text-xl py-2">
             <span className="text-white">
-              <strong>Chiều cao</strong> của con <span className="text-[#005D96]"><strong>{+data.currentHeight - dataCurrentHeight(duong_chieu_cao_chuan, data.date_of_birth) > 0 ? 'cao hơn chỉ số tiêu chuẩn' : 'thấp hơn chỉ số tiêu chuẩn'}</strong></span> và 
+              <strong>Chiều cao</strong> của con <span className="text-[#005D96]"><strong>{+data.currentHeight - dataCurrentHeight(duong_chieu_cao_chuan, data.date_of_birth) > 0 ? 'cao hơn chỉ số tiêu chuẩn' : 'thấp hơn chỉ số tiêu chuẩn'}</strong></span> và
               <strong> cân nặng</strong> của con</span> <span className="text-[#005D96]"><strong>{(Number(data.currentWeight) - dataCurrentWeight(can_nang_chuan[data.gender], data.date_of_birth)) > 0 ? 'cao hơn chỉ số tiêu chuẩn.' : 'thấp hơn chỉ số tiêu chuẩn.'}</strong></span>
           </p>
           <p className="font-bold text-white">Dự báo chiều cao tuổi 20: {resultCalculator?.predictedHeightAt20} cm</p>
@@ -214,14 +214,14 @@ function Details(props: DeleteProductProps) {
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_sang'].map(item => (
-                        <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                        <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.menu}</li>
                       ))}
                     </ul>
                   </td>
                   <td className="border-[1px] text-center">
                     <ul>
                       {data_dinh_duong?.['bua_sang'].map(item => (
-                        <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                        <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.nang_luong}</li>
                       ))}
                     </ul>
                   </td>
@@ -229,10 +229,18 @@ function Details(props: DeleteProductProps) {
                 <tr className="bg-[#B6E2FF]">
                   <td className="border-[1px] text-center px-4 py-2">Bữa phụ sáng</td>
                   <td className="border-[1px] text-center">
-                    {data_dinh_duong?.['bua_phu_sang'].map(item => item.menu)}
+                    <ul>
+                      {data_dinh_duong?.['bua_phu_sang'].map(item => (
+                        <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                      ))}
+                    </ul>
                   </td>
                   <td className="border-[1px] text-center">
-                    {data_dinh_duong?.['bua_phu_sang'].map(item => item.nang_luong)}
+                    <ul>
+                      {data_dinh_duong?.['bua_phu_sang'].map(item => (
+                        <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                      ))}
+                    </ul>
                   </td>
                 </tr>
                 <tr className="bg-[#FFF9DE]">
@@ -255,10 +263,18 @@ function Details(props: DeleteProductProps) {
                 <tr className="bg-[#B6E2FF]">
                   <td className="border-[1px] text-center px-4 py-2">Bữa phụ chiều</td>
                   <td className="text-center">
-                    {data_dinh_duong?.['bua_phu_chieu'].map(item => item.menu)}
+                    <ul>
+                      {data_dinh_duong?.['bua_phu_chieu'].map(item => (
+                        <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.menu}</li>
+                      ))}
+                    </ul>
                   </td>
                   <td className="border-[1px] text-center">
-                    {data_dinh_duong?.['bua_phu_chieu'].map(item => item.nang_luong)}
+                    <ul>
+                      {data_dinh_duong?.['bua_phu_chieu'].map(item => (
+                        <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.nang_luong}</li>
+                      ))}
+                    </ul>
                   </td>
                 </tr>
                 <tr className="bg-[#FFF9DE]">
@@ -278,6 +294,25 @@ function Details(props: DeleteProductProps) {
                     </ul>
                   </td>
                 </tr>
+                {data_dinh_duong?.['bua_phu_toi'] && (
+                  <tr className="bg-[#B6E2FF]">
+                    <td className="border-[1px] text-center px-4 py-2">Bữa phụ tối</td>
+                    <td className="border-[1px] text-center">
+                      <ul>
+                        {data_dinh_duong?.['bua_phu_toi'].map(item => (
+                          <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td className="border-[1px] text-center">
+                      <ul>
+                        {data_dinh_duong?.['bua_phu_toi'].map(item => (
+                          <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

@@ -24,41 +24,29 @@ export const menu_dinh_duong = (currentAge: number) => ([
             menu: 'Cháo yến mạch nấu tôm (50g yến mạch, 20g tôm, rau cải bó xôi xay nhuyễn)',
             nang_luong: '130 kcal'
           },
-          {
-            menu: 'Thịt gà nướng (40g)',
-            nang_luong: '100 kcal'
-          },
-          {
-            menu: 'Rau muống luộc (50g)',
-            nang_luong: '15 kcal'
-          },
-          {
-            menu: 'Canh cải xanh nấu thịt bằm (40g thịt)',
-            nang_luong: '80 kcal'
-          },
         ],
         bua_phu_chieu: [
           {
-            menu: '1 quả táo nhỏ',
+            menu: '1/2 quả táo hấp mềm',
             nang_luong: '52 kcal'
+          },
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
           }
         ],
         bua_toi: [
           {
-            menu: 'Súp rau củ với thịt gà nạc (cà rốt, khoai tây, 40g thịt gà)',
+            menu: 'Cháo rau củ thịt nạc (50g gạo, cà rốt, bí đỏ, 20g thịt nạc)',
             nang_luong: '140 kcal'
           },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
-          }
         ]
       },
       'thieu_can': {
         bua_sang: [
           {
-            menu: 'Bánh mì kẹp thịt nguội và phô mai (2 lát bánh mì, 30g thịt nguội, 10g phô mai) ',
-            nang_luong: '220 kcal'
+            menu: 'Cháo thịt bằm nấu bí đỏ (50g gạo, 30g thịt bằm, 50g bí đỏ)',
+            nang_luong: '160 kcal'
           },
           {
             menu: '1 quả chuối ',
@@ -73,48 +61,40 @@ export const menu_dinh_duong = (currentAge: number) => ([
         ],
         bua_trua: [
           {
-            menu: 'Cơm trắng (1 bát) (1 bát)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: 'Cá kho tộ (50g cá)',
+            menu: 'Cơm nát với cá hồi hấp băm nhỏ (50g cơm, 30g cá hồi) ',
             nang_luong: '200 kcal'
           },
           {
-            menu: 'Rau cải xào tỏi (50g rau)',
-            nang_luong: '70 kcal'
-          },
-          {
-            menu: 'Canh bí đỏ nấu tôm (50g bí, 20g tôm) ',
-            nang_luong: '60 kcal'
+            menu: 'Canh rau ngót (xay nhuyễn)',
+            nang_luong: '50 kcal'
           },
         ],
         bua_phu_chieu: [
           {
-            menu: '1 hộp sữa chua uống ',
+            menu: '1 hũ sữa chua nguyên chất',
             nang_luong: '100 kcal'
+          },
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
           }
         ],
         bua_toi: [
           {
-            menu: 'Cơm nát với cá hồi áp chảo (50g cơm, 30g cá hồi) ',
-            nang_luong: '250 kcal'
-          },
-          {
-            menu: 'rau cải xanh xào tỏi (30g)',
-            nang_luong: '70 kcal'
+            menu: 'Súp gà bắp (bắp nấu mềm, thịt gà xay nhuyễn)',
+            nang_luong: '200 kcal'
           }
         ]
       },
       'can_nang_chuan': {
         bua_sang: [
           {
-            menu: 'Phở bò (50g bánh phở, 30g thịt bò, hành lá) ',
-            nang_luong: '200 kcal'
+            menu: 'Súp khoai tây thịt bò (khoai tây nghiền, 30g thịt bò xay)',
+            nang_luong: '150 kcal'
           },
           {
-            menu: '1/2 quả táo ',
-            nang_luong: '26 kcal'
+            menu: '1/2 quả cam vắt',
+            nang_luong: '30 kcal'
           }
         ],
         bua_phu_sang: [
@@ -125,32 +105,24 @@ export const menu_dinh_duong = (currentAge: number) => ([
         ],
         bua_trua: [
           {
-            menu: 'Cơm trắng (1 bát)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: 'Gà xào nấm (50g gà, 30g nấm)',
-            nang_luong: '100 kcal'
-          },
-          {
-            menu: 'Canh rau ngót nấu thịt (30g rau, 20g thịt)',
-            nang_luong: '60 kcal'
-          },
+            menu: 'Cháo đậu xanh thịt bằm (50g gạo, 30g đậu xanh, 20g thịt bằm)',
+            nang_luong: '180 kcal'
+          }
         ],
         bua_phu_chieu: [
           {
-            menu: '1 quả lê nhỏ',
+            menu: '1 quả lê nhỏ hấp mềm',
             nang_luong: '50 kcal'
+          },
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
           }
         ],
         bua_toi: [
           {
-            menu: 'Cháo thịt gà với rau củ (50g gạo, 30g thịt gà, rau củ)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
+            menu: 'Cháo cá lóc rau ngót (50g gạo, 30g cá lóc xay nhuyễn, rau ngót)',
+            nang_luong: '160 kcal'
           }
         ]
       }
@@ -162,345 +134,7 @@ export const menu_dinh_duong = (currentAge: number) => ([
       'thua_can': {
         bua_sang: [
           {
-            menu: 'Phở gà (50g bánh phở, 30g thịt gà, rau thơm)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: '1/2 quả chuối',
-            nang_luong: '45 kcal'
-          }
-        ],
-        bua_phu_sang: [
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_trua: [
-          {
-            menu: 'Cơm gạo lứt (1/2 bát)',
-            nang_luong: '80 kcal'
-          },
-          {
-            menu: 'Cá hấp gừng (30g cá rô phi)',
-            nang_luong: '40 kcal'
-          },
-          {
-            menu: 'Rau muống luộc (50g)',
-            nang_luong: '15 kcal'
-          },
-          {
-            menu: 'Canh cải xanh nấu thịt bằm (40g thịt)',
-            nang_luong: '60 kcal'
-          },
-        ],
-        bua_phu_chieu: [
-          {
-            menu: '1 quả táo nhỏ',
-            nang_luong: '52 kcal'
-          },
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_toi: [
-          {
-            menu: 'Cháo đậu xanh (50g gạo, 30g đậu xanh, thịt băm',
-            nang_luong: '110 kcal'
-          },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
-          }
-        ]
-      },
-      'thieu_can': {
-        bua_sang: [
-          {
-            menu: 'Bánh mì kẹp thịt nướng, dưa leo, rau thơm',
-            nang_luong: '200 kcal'
-          },
-          {
-            menu: '1 quả chuối ',
-            nang_luong: '90 kcal'
-          }
-        ],
-        bua_phu_sang: [
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_trua: [
-          {
-            menu: 'Cơm trắng (1 bát)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: 'Thịt kho trứng cút (30g thịt, 1 trứng cút)',
-            nang_luong: '180 kcal'
-          },
-          {
-            menu: 'Rau cải thìa xào tỏi (30g cải, 5g dầu ăn)',
-            nang_luong: '70 kcal'
-          },
-          {
-            menu: 'Canh chua cá',
-            nang_luong: '80 kcal'
-          },
-        ],
-        bua_phu_chieu: [
-          {
-            menu: '1 hũ sữa chua nguyên chất',
-            nang_luong: '100 kcal'
-          },
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_toi: [
-          {
-            menu: 'Cháo gà với bí đỏ (50g gạo, 30g bí đỏ, thịt gà xé nhỏ)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
-          }
-        ]
-      },
-      'can_nang_chuan': {
-        bua_sang: [
-          {
-            menu: 'Cháo thịt bằm rau củ (50g gạo, 20g thịt bằm)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: '1 quả táo nhỏ',
-            nang_luong: '52 kcal'
-          }
-        ],
-        bua_phu_sang: [
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_trua: [
-          {
-            menu: 'Cơm trắng (3/4 bát)',
-            nang_luong: '110 kcal'
-          },
-          {
-            menu: 'Thịt gà hấp lá chanh (30g thịt gà)',
-            nang_luong: '70 kcal'
-          },
-          {
-            menu: 'Canh bí xanh nấu tôm (50g bí, 20g tôm)',
-            nang_luong: '60 kcal'
-          },
-          {
-            menu: 'Rau cải luộc (30g)',
-            nang_luong: '15 kcal'
-          }
-        ],
-        bua_phu_chieu: [
-          {
-            menu: '1 quả lê nhỏ',
-            nang_luong: '50 kcal'
-          },
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_toi: [
-          {
-            menu: 'Súp rau củ (khoai tây, cà rốt, đậu hà lan, 10g thịt nạc băm nhỏ)',
-            nang_luong: '130 kcal'
-          },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
-          }
-        ]
-      }
-    }
-  },
-  {
-    condition: 6 <= currentAge && currentAge < 12,
-    dinh_duong: {
-      'thua_can': {
-        bua_sang: [
-          {
-            menu: '1 bát nhỏ cháo yến mạch với sữa (40g yến mạch, 100ml sữa)',
-            nang_luong: '130 kcal'
-          },
-          {
-            menu: '1/2 quả táo',
-            nang_luong: '26 kcal'
-          }
-        ],
-        bua_phu_sang: [
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_trua: [
-          {
-            menu: 'Cơm gạo lứt (1/2 bát)',
-            nang_luong: '60 kcal'
-          },
-          {
-            menu: 'Cá hấp (30g)',
-            nang_luong: '60 kcal'
-          },
-          {
-            menu: 'Rau muống luộc (50g)',
-            nang_luong: '15 kcal'
-          },
-          {
-            menu: 'Canh cải xanh nấu thịt bằm (30g thịt)',
-            nang_luong: '70 kcal'
-          },
-        ],
-        bua_phu_chieu: [
-          {
-            menu: '1 quả lê nhỏ',
-            nang_luong: '50 kcal'
-          },
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_toi: [
-          {
-            menu: 'Súp rau củ với thịt gà nạc (cà rốt, khoai tây, 30g thịt gà)',
-            nang_luong: '100 kcal'
-          },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
-          }
-        ]
-      },
-      'thieu_can': {
-        bua_sang: [
-          {
-            menu: 'Bánh mì kẹp thịt nguội và phô mai (2 lát bánh mì, 40g thịt nguội, 15g phô mai)',
-            nang_luong: '300 kcal'
-          },
-          {
-            menu: '1 quả chuối ',
-            nang_luong: '90 kcal'
-          }
-        ],
-        bua_phu_sang: [
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_trua: [
-          {
-            menu: 'Cơm trắng (1.5 bát)',
-            nang_luong: '225 kcal'
-          },
-          {
-            menu: 'Thịt bò kho gừng (80g thịt bò)',
-            nang_luong: '320 kcal'
-          },
-          {
-            menu: 'Rau cải xào tỏi (70g rau)',
-            nang_luong: '100 kcal'
-          },
-          {
-            menu: 'Canh bí đỏ nấu tôm (50g bí, 30g tôm) ',
-            nang_luong: '80 kcal'
-          },
-        ],
-        bua_phu_chieu: [
-          {
-            menu: '1 hũ sữa chua nguyên chất',
-            nang_luong: '120 kcal'
-          },
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_toi: [
-          {
-            menu: 'Cơm nát với cá hồi áp chảo (70g cơm, 50g cá hồi) ',
-            nang_luong: '350 kcal'
-          },
-          {
-            menu: 'Rau cải xanh xào tỏi (50g)',
-            nang_luong: '100 kcal'
-          }
-        ]
-      },
-      'can_nang_chuan': {
-        bua_sang: [
-          {
-            menu: 'Phở gà (70g bánh phở, 50g thịt gà, rau thơm)',
-            nang_luong: '300 kcal'
-          },
-          {
-            menu: '1 quả cam',
-            nang_luong: '60 kcal'
-          }
-        ],
-        bua_phu_sang: [
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_trua: [
-          {
-            menu: 'Cơm trắng (1 bát)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: 'Gà xào nấm (70g gà, 30g nấm)',
-            nang_luong: '150 kcal'
-          },
-        ],
-        bua_phu_chieu: [
-          {
-            menu: '1 quả táo lớn',
-            nang_luong: '80 kcal'
-          },
-          {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
-          }
-        ],
-        bua_toi: [
-          {
-            menu: 'Cháo thịt gà với rau củ (70g gạo, 50g thịt gà, rau củ)',
-            nang_luong: '250 kcal'
-          },
-          {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
-          }
-        ]
-      }
-    }
-  },
-  {
-    condition: 12 <= currentAge && currentAge < 18,
-    dinh_duong: {
-      'thua_can': {
-        bua_sang: [
-          {
-            menu: '1 lát bánh mì nguyên cám với trứng luộc (1 quả)',
+            menu: 'Bánh mì nguyên cám với thịt gà nướng (1 lát bánh mì, 30g thịt gà)',
             nang_luong: '170 kcal'
           },
           {
@@ -516,21 +150,140 @@ export const menu_dinh_duong = (currentAge: number) => ([
         ],
         bua_trua: [
           {
-            menu: 'Cơm gạo lứt (1 bát)',
-            nang_luong: '120 kcal'
+            menu: 'Cơm gạo lứt (1 bát nhỏ), cá hồi nướng (30g), rau xào',
+            nang_luong: '250 kcal'
+          },
+        ],
+        bua_phu_chieu: [
+          {
+            menu: '1 quả lê nhỏ',
+            nang_luong: '50 kcal'
+          }
+        ],
+        bua_toi: [
+          {
+            menu: 'Bún thịt nướng (bún, thịt nướng, rau thơm)',
+            nang_luong: '200 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ]
+      },
+      'thieu_can': {
+        bua_sang: [
+          {
+            menu: 'Phở bò (70g bánh phở, 50g thịt bò, rau thơm)',
+            nang_luong: '300 kcal'
           },
           {
-            menu: 'Cá hấp (50g)',
+            menu: '1/2 quả chuối ',
+            nang_luong: '45 kcal'
+          }
+        ],
+        bua_phu_sang: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ],
+        bua_trua: [
+          {
+            menu: 'Cơm trắng (1 bát nhỏ), thịt heo kho tàu (50g thịt, 1 quả trứng)',
+            nang_luong: '300 kcal'
+          }
+        ],
+        bua_phu_chieu: [
+          {
+            menu: '1 hũ sữa chua nguyên chất',
             nang_luong: '100 kcal'
+          }
+        ],
+        bua_toi: [
+          {
+            menu: 'Cơm trắng (1 bát nhỏ), gà xào nấm (50g gà, 30g nấm)',
+            nang_luong: '250 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ]
+      },
+      'can_nang_chuan': {
+        bua_sang: [
+          {
+            menu: 'Bánh mì trứng ốp la (1 lát bánh mì, 1 quả trứng)',
+            nang_luong: '200 kcal'
           },
           {
-            menu: 'Rau muống luộc (50g)',
-            nang_luong: '15 kcal'
+            menu: '1/2 quả cam',
+            nang_luong: '30 kcal'
+          }
+        ],
+        bua_phu_sang: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ],
+        bua_trua: [
+          {
+            menu: 'Cơm trắng (1 bát nhỏ), thịt gà nướng (30g), rau cải xanh xào',
+            nang_luong: '250 kcal'
+          }
+        ],
+        bua_phu_chieu: [
+          {
+            menu: '1 quả chuối',
+            nang_luong: '90 kcal'
+          }
+        ],
+        bua_toi: [
+          {
+            menu: 'Cơm trắng (1 bát nhỏ), cá thu hấp (30g), rau muống xào',
+            nang_luong: '250 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ]
+      }
+    }
+  },
+  {
+    condition: 6 <= currentAge && currentAge < 12,
+    dinh_duong: {
+      'thua_can': {
+        bua_sang: [
+          {
+            menu: 'Bánh mì nguyên cám với trứng luộc (1 lát bánh mì, 1 quả trứng)',
+            nang_luong: '200 kcal'
           },
           {
-            menu: 'Canh cải xanh nấu thịt bằm (40g thịt)',
-            nang_luong: '80 kcal'
-          },
+            menu: '1/2 quả cam',
+            nang_luong: '30 kcal'
+          }
+        ],
+        bua_phu_sang: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ],
+        bua_trua: [
+          {
+            menu: 'Cơm gạo lứt (1 bát nhỏ), cá hồi hấp (70g), rau cải xào tỏi',
+            nang_luong: '300 kcal'
+          }
         ],
         bua_phu_chieu: [
           {
@@ -538,29 +291,31 @@ export const menu_dinh_duong = (currentAge: number) => ([
             nang_luong: '50 kcal'
           },
           {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
+            menu: '1 hộp sữa chua nguyên chất và 10g hạt điều',
+            nang_luong: '200 kcal'
           }
         ],
         bua_toi: [
           {
-            menu: 'Súp rau củ với thịt gà nạc (cà rốt, khoai tây, 50g thịt gà)',
-            nang_luong: '150 kcal'
-          },
+            menu: 'Thịt gà luộc (80g), rau muống xào (100g), cơm trắng (1/2 bát)',
+            nang_luong: '300 kcal'
+          }
+        ],
+        bua_phu_toi: [
           {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
           }
         ]
       },
       'thieu_can': {
         bua_sang: [
           {
-            menu: 'Bánh mì kẹp trứng và phô mai (2 lát bánh mì, 2 quả trứng, 20g phô mai)',
+            menu: 'Phở bò (100g bánh phở, 80g thịt bò, rau thơm)',
             nang_luong: '350 kcal'
           },
           {
-            menu: '1 quả chuối ',
+            menu: '1 quả chuối nhỏ',
             nang_luong: '90 kcal'
           }
         ],
@@ -572,52 +327,42 @@ export const menu_dinh_duong = (currentAge: number) => ([
         ],
         bua_trua: [
           {
-            menu: 'Cơm trắng (1.5 bát)',
-            nang_luong: '225 kcal'
-          },
-          {
-            menu: 'Thịt bò kho tiêu (100g thịt bò)',
-            nang_luong: '350 kcal'
-          },
-          {
-            menu: 'Rau xào thập cẩm (80g rau)',
-            nang_luong: '100 kcal'
-          },
-          {
-            menu: 'Canh bí đỏ nấu tôm (70g bí, 50g tôm) ',
-            nang_luong: '100 kcal'
-          },
+            menu: 'Cơm trắng (1 bát), thịt bò xào (120g thịt bò), rau cải xào tỏi',
+            nang_luong: '400 kcal'
+          }
         ],
         bua_phu_chieu: [
           {
-            menu: '1 hũ sữa chua nguyên chất',
-            nang_luong: '120 kcal'
+            menu: '1 hộp sữa chua nguyên chất và 10g hạt điều',
+            nang_luong: '200 kcal'
           },
           {
-            menu: '1 ly sữa OZ',
-            nang_luong: '184 kcal'
+            menu: '2 lát bánh mì với phô mai và bơ đậu phộng',
+            nang_luong: '800 kcal'
           }
         ],
         bua_toi: [
           {
-            menu: 'Cơm với cá hồi áp chảo (80g cơm, 70g cá hồi)',
-            nang_luong: '450 kcal'
-          },
+            menu: 'Cá hồi áp chảo (100g), cơm trắng (1 bát), rau muống xào tỏi',
+            nang_luong: '400 kcal'
+          }
+        ],
+        bua_phu_toi: [
           {
-            menu: 'Rau cải xanh xào tỏi (80g)',
-            nang_luong: '100 kcal'
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
           }
         ]
       },
       'can_nang_chuan': {
         bua_sang: [
           {
-            menu: 'Phở bò (80g bánh phở, 70g thịt bò, rau thơm)',
-            nang_luong: '350 kcal'
+            menu: 'Bánh mì ốp la (1 lát bánh mì, 2 quả trứng)',
+            nang_luong: '300 kcal'
           },
           {
-            menu: '1 quả cam',
-            nang_luong: '60 kcal'
+            menu: '1 quả táo nhỏ',
+            nang_luong: '52 kcal'
           }
         ],
         bua_phu_sang: [
@@ -628,36 +373,173 @@ export const menu_dinh_duong = (currentAge: number) => ([
         ],
         bua_trua: [
           {
-            menu: 'Cơm trắng (1 bát)',
-            nang_luong: '150 kcal'
-          },
-          {
-            menu: 'Thịt gà xào nấm (80g gà, 50g nấm)',
-            nang_luong: '200 kcal'
-          },
-          {
-            menu: 'Canh rau ngót nấu thịt (50g rau, 30g thịt)',
-            nang_luong: '80 kcal'
-          },
+            menu: 'Cơm trắng (1 bát), thịt gà nướng (80g), rau cải xào',
+            nang_luong: '300 kcal'
+          }
         ],
         bua_phu_chieu: [
           {
-            menu: '1 quả táo lớn',
-            nang_luong: '80 kcal'
+            menu: '1 quả chuối',
+            nang_luong: '90 kcal'
           },
+          {
+            menu: '1 lát bánh mì với phomai, bơ đậu phộng',
+            nang_luong: '400 kcal'
+          }
+        ],
+        bua_toi: [
+          {
+            menu: 'Cá hấp (70g cá), cơm trắng (1 bát), rau muống xào tỏi',
+            nang_luong: '300 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ]
+      }
+    }
+  },
+  {
+    condition: 12 <= currentAge && currentAge <= 20,
+    dinh_duong: {
+      'thua_can': {
+        bua_sang: [
+          {
+            menu: 'Bánh mì nguyên cám với trứng luộc (1 lát bánh mì, 1 quả trứng)',
+            nang_luong: '200 kcal'
+          },
+          {
+            menu: '1/2 quả cam',
+            nang_luong: '30 kcal'
+          }
+        ],
+        bua_phu_sang: [
           {
             menu: '1 ly sữa OZ',
             nang_luong: '184 kcal'
           }
         ],
+        bua_trua: [
+          {
+            menu: 'Cơm gạo lứt (1 bát nhỏ), cá hồi hấp (100g), rau cải xào tỏi',
+            nang_luong: '350 kcal'
+          }
+        ],
+        bua_phu_chieu: [
+          {
+            menu: '1 quả táo nhỏ',
+            nang_luong: '52 kcal'
+          },
+          {
+            menu: '1 lát bánh mì nguyên cám và phô mai ',
+            nang_luong: '150 kcal'
+          }
+        ],
         bua_toi: [
           {
-            menu: 'Cháo thịt gà với rau củ (70g gạo, 70g thịt gà, rau củ)',
+            menu: 'Thịt gà nướng (80g), rau muống xào (100g), cơm trắng (1/2 bát)',
+            nang_luong: '350 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ]
+      },
+      'thieu_can': {
+        bua_sang: [
+          {
+            menu: 'Phở bò (100g bánh phở, 80g thịt bò, rau thơm)',
+            nang_luong: '350 kcal'
+          },
+          {
+            menu: '1 quả chuối nhỏ',
+            nang_luong: '90 kcal'
+          }
+        ],
+        bua_phu_sang: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ],
+        bua_trua: [
+          {
+            menu: 'Cơm trắng (1 bát), thịt bò xào (120g thịt bò), rau cải xào tỏi',
+            nang_luong: '400 kcal'
+          }
+        ],
+        bua_phu_chieu: [
+          {
+            menu: '1 hộp sữa chua nguyên chất và 15g hạt điều',
+            nang_luong: '250 kcal'
+          },
+          {
+            menu: '2 lát bánh mì với bơ đậu phộng và mật ong',
+            nang_luong: '600 kcal'
+          }
+        ],
+        bua_toi: [
+          {
+            menu: 'Cá hồi áp chảo (100g), cơm trắng (1 bát), rau muống xào tỏi',
+            nang_luong: '400 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ]
+      },
+      'can_nang_chuan': {
+        bua_sang: [
+          {
+            menu: 'Bánh mì ốp la (1 lát bánh mì, 2 quả trứng)',
             nang_luong: '300 kcal'
           },
           {
-            menu: '1 lát bánh mì nguyên cám',
-            nang_luong: '60 kcal'
+            menu: '1 quả táo nhỏ',
+            nang_luong: '52 kcal'
+          }
+        ],
+        bua_phu_sang: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
+          }
+        ],
+        bua_trua: [
+          {
+            menu: 'Cơm trắng (1 bát), thịt gà nướng (100g), rau cải xào',
+            nang_luong: '400 kcal'
+          }
+        ],
+        bua_phu_chieu: [
+          {
+            menu: '1 quả chuối',
+            nang_luong: '90 kcal'
+          },
+          {
+            menu: '02 Bánh mì với phô mai và hạt dẻ cười (250 kcal)',
+            nang_luong: '500 kcal'
+          }
+        ],
+        bua_toi: [
+          {
+            menu: 'Cá hồi áp chảo (100g cá hồi), 50g thịt bò nướng, cơm trắng (1 bát), rau muống xào tỏi',
+            nang_luong: '650 kcal'
+          }
+        ],
+        bua_phu_toi: [
+          {
+            menu: '1 ly sữa OZ',
+            nang_luong: '184 kcal'
           }
         ]
       }
