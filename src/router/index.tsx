@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import News from "../pages/news";
 import HeightCalculator from "../pages/HeightCalculator";
 import Details from "../pages/HeightCalculator/Details";
+import Order from "../pages/Order";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
         <Route path="/tin-tuc" element={<News />} />
         <Route path="/du-doan-chieu-cao" element={<HeightCalculator />} />
         <Route path="/du-doan-chieu-cao/:id" element={<Details />} />
+        <Route path="/don-hang" element={<Order />} />
       </Route>
     </>
   )
