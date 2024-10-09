@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getOrders } from "../../services/order";
 import CloseIcon from "../../assets/icons/CloseIcon";
 import { OrderEntity } from "../../entities/Order";
+import { formatDate } from "../../utils/formatDate";
 
 function Order() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -22,6 +23,14 @@ function Order() {
   }, []);
 
   const columns: TableColumnsType = [
+    {
+      title: "Thời gian",
+      dataIndex: 'createdAt',
+      key: 1,
+      render(value) {
+        return formatDate(value)
+      }
+    },
     {
       title: "Họ tên",
       dataIndex: 'fullName',
