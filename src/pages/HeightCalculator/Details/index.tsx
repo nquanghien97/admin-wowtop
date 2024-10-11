@@ -57,6 +57,21 @@ function Details(props: DeleteProductProps) {
     }))
     return matchedCondition?.content
   }
+
+  let totalKcal = 0;
+  if (data_dinh_duong) {
+    Object.values(data_dinh_duong).forEach(kcal => {
+      if (kcal) {
+        kcal.forEach((item: {
+          menu: string;
+          nang_luong: string;
+        }) => {
+          totalKcal += parseInt(item.nang_luong)
+        })
+      }
+    })
+  }
+
   return (
     <Modal
       open={open}
@@ -314,6 +329,12 @@ function Details(props: DeleteProductProps) {
                   </tr>
                 )}
               </tbody>
+              <tfoot className="bg-[#FFF9DE] w-full">
+                <tr className=" w-full">
+                  <td className="border-[1px] text-center px-4 py-2 font-bold">Tổng năng lượng</td>
+                  <td colSpan={2} className="border-[1px] text-center px-4 py-2 font-bold">{totalKcal} kcal</td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>
