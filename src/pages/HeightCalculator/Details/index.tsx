@@ -233,17 +233,17 @@ function Details(props: DeleteProductProps) {
           </div>
           <div className="max-w-4xl m-auto mb-8">
             <div className="relative top-6 flex justify-center">
-              <div className="bg-[#005D96] rounded-full px-8 py-2">
+              <div className="bg-[#005D96] rounded-full px-8 py-2 flex items-center">
                 <h3 className="uppercase text-2xl font-bold text-white">Các yếu tố cần đảm bảo để con đạt chiều cao lý tưởng</h3>
               </div>
             </div>
             <div className="px-8 pt-8 pb-4 border-[1px] border-[#005D96]">
-              <ul className="list-decimal font-semibold">
-                <li className="mb-1">Dinh dưỡng đủ, tỷ lệ Đạm - Đường - Béo phù hợp độ tuổi</li>
-                <li className="mb-1">Tận dụng giai đoạn vàng tăng chiều cao để thúc đẩy chiều cao cho con</li>
-                <li className="mb-1">Bổ sung hoạt chất CBP để kích thích nguyên bào xương phát triển, thúc đẩy khung xương cao lớn</li>
-                <li className="mb-1">Bổ sung khoáng chất (Canxi, Magie, Phosphor, ...) để xương chắc khỏe</li>
-                <li>Ngủ sớm trước 22h00 và tập các bài tập kéo dãn cơ</li>
+              <ul className="font-semibold">
+                <li className="mb-1">1. Dinh dưỡng đủ, tỷ lệ Đạm - Đường - Béo phù hợp độ tuổi</li>
+                <li className="mb-1">2. Tận dụng giai đoạn vàng tăng chiều cao để thúc đẩy chiều cao cho con</li>
+                <li className="mb-1">3. Bổ sung hoạt chất CBP để kích thích nguyên bào xương phát triển, thúc đẩy khung xương cao lớn</li>
+                <li className="mb-1">4. Bổ sung khoáng chất (Canxi, Magie, Phosphor, ...) để xương chắc khỏe</li>
+                <li>5. Ngủ sớm trước 22h00 và tập các bài tập kéo dãn cơ</li>
               </ul>
             </div>
           </div>
