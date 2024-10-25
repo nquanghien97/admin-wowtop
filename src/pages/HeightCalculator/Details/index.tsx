@@ -116,7 +116,7 @@ function Details(props: DeleteProductProps) {
       >
         <div className="bg-[url('/bg-detail.png')] bg-[length:100%_100%]" ref={elementRef1}>
           <div className="flex justify-center mb-4">
-            <img src="/logo2.png" width={561} height={150} />
+            <img src="/logo.webp" width={200} height={150} />
           </div>
           <h1 className="text-center text-4xl text-[#2074A5] font-bold mb-8">
             Phác đồ dự đoán chiều cao của
