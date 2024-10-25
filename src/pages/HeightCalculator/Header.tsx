@@ -26,7 +26,7 @@ function Header(props: HeaderProps) {
           <Input
             placeholder="Mã Phác Đồ"
             className="py-2"
-            rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            rootClassName="border-[1px] border-[#84571B] rounded-lg"
             allowClear
           />
         </Form.Item>
@@ -37,7 +37,7 @@ function Header(props: HeaderProps) {
           <Input
             placeholder="Số điện thoại"
             className="py-2"
-            rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            rootClassName="border-[1px] border-[#84571B] rounded-lg"
             allowClear
           />
         </Form.Item>
@@ -48,7 +48,7 @@ function Header(props: HeaderProps) {
           <Input
             placeholder="Họ tên phụ huynh"
             className="py-2"
-            rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            rootClassName="border-[1px] border-[#84571B] rounded-lg"
             allowClear
           />
         </Form.Item>
@@ -59,7 +59,7 @@ function Header(props: HeaderProps) {
           <Input
             placeholder="Họ tên con"
             className="py-2"
-            rootClassName="border-[1px] border-[#007bb5] rounded-lg"
+            rootClassName="border-[1px] border-[#84571B] rounded-lg"
             allowClear
           />
         </Form.Item>
@@ -67,7 +67,7 @@ function Header(props: HeaderProps) {
           <Tooltip title="Tìm kiếm">
             <Button
               htmlType="submit"
-              type="primary"
+              className="bg-[#84571B] hover:!bg-[#c58229] duration-300"
               shape="circle"
               icon={<SearchIcon color="white" />}
             />

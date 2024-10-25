@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 function App() {
 
   useEffect(() => {
-    document.title = "Kidscareplus Admin"
+    document.title = "Wowtop Admin"
   }, []);
 
   return (

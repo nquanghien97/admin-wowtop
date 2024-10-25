@@ -192,7 +192,7 @@ function HeightCalculator() {
             components: {
               Table: {
                 borderColor: "black",
-                headerBg: "#0071BA !important",
+                headerBg: "#84571B !important",
                 headerColor: "white",
               }
             }

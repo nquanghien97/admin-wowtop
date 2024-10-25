@@ -106,7 +106,7 @@ function Details(props: DeleteProductProps) {
       footer={false}
       wrapClassName='!p-0'
     >
-      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#0071BA] rounded-t-lg uppercase font-bold text-white">Thông tin chi tiết dự đoán chiều cao</div>
+      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#84571B] rounded-t-lg uppercase font-bold text-white">Thông tin chi tiết dự đoán chiều cao</div>
       <div
         className="pb-8 bg-[url('/bg-detail.png')] bg-[length:100%_100%]"
         ref={(el) => {
