@@ -18,11 +18,13 @@
 }
 
 .bg-liner {
-  background: linear-gradient(to right, #0ea8b0, #3bbcc2, #83dce0, #42cfd8, #1dc4cd, #0db5c0);
+  background: linear-gradient(to right, #0D2D95, #0C63C6);
 }
 
 .ant-modal-content {
-  background-image: url('/bg-detail.png') !important;
-  background-size: 100% 100%;
+  background: linear-gradient(to right, rgba(235, 201, 130, 0.3), rgba(251, 248, 208, 0.3), rgba(225, 183, 84, 0.3), rgba(243, 200, 109, 0.3));
 }
 
+.custom-bg {
+  background: linear-gradient(to right, rgba(235, 201, 130, 0.6), rgba(251, 248, 208, 0.6), rgba(225, 183, 84, 0.6), rgba(243, 200, 109, 0.6));
+}
