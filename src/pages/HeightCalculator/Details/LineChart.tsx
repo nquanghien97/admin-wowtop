@@ -187,7 +187,11 @@ const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
           size: 20,
           weight: 'bold' as const,
         },
-        color: '#2074A5'
+        color: '#143cad',
+        padding: {
+          bottom: 28,
+          top: 18
+        }
       },
     },
     scales: {
@@ -208,7 +212,7 @@ const LineChart = (props: { dataLine: number[], date_of_birth: string }) => {
     maintainAspectRatio: false
   };
 
-  return <Line data={data} options={options}className="w-2/3" />;
+  return <Line data={data} options={options} className="w-2/3" />;
 };
 
 export default LineChart;

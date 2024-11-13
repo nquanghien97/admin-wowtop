@@ -109,25 +109,25 @@ function Details(props: DeleteProductProps) {
     >
       <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#84571B] rounded-t-lg uppercase font-bold text-white">Thông tin chi tiết dự đoán chiều cao</div>
       <div
-        className="pb-8 px-4 bg-[length:100%_100%] py-8"
+        className="pb-8 px-4 bg-[length:100%_100%]"
         ref={(el) => {
           targetRef.current = el; // gán cho targetRef để tải PDF
           // elementRef.current = el;
         }}
       >
         <div className="py-4" ref={elementRef1}>
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center">
             <img src="/logo-ngang.png" width={400} height={150} />
           </div>
-          <h1 className="text-center text-4xl text-[#143cad] font-bold mb-8">
+          <h1 className="text-center text-5xl text-[#143cad] font-semibold mb-8">
             Phác đồ dự đoán chiều cao của
             <br />
-            <p>{data.fullName}</p>
+            <p className="font-bold">{data.fullName}</p>
           </h1>
           <div className="flex justify-around gap-4 max-w-5xl m-auto mb-4">
             <div className="w-1/2 flex-1 custom-bg p-4 rounded-2xl">
-              <h3 className="uppercase text-2xl text-[#143cad] text-center mb-4 font-semibold">Thông tin phụ huynh</h3>
-              <div className="font-semibold">
+              <h3 className="uppercase text-3xl text-[#143cad] text-center mb-4 font-semibold">Thông tin phụ huynh</h3>
+              <div className="font-semibold text-lg">
                 <p className="pb-1">Họ tên phụ huynh: <span className="text-[#143cad]">{data.parentName}</span></p>
                 <p className="pb-1">Số điện thoại: <span className="text-[#143cad]">{data.phoneNumber}</span></p>
                 <p className="pb-1">Địa chỉ: <span className="text-[#143cad]">{`${data.address}, ${data.ward}, ${data.district}, ${data.province}`}</span></p>
@@ -139,7 +139,7 @@ function Details(props: DeleteProductProps) {
             </div>
             <div className="w-1/2 flex-1 custom-bg p-4 rounded-2xl">
               <h3 className="uppercase text-2xl text-[#143cad] text-center mb-4 font-semibold">Thông tin của con</h3>
-              <div className="font-semibold">
+              <div className="font-semibold text-lg">
                 <p className="pb-1">Họ tên: <span className="text-[#143cad]">{data.fullName}</span></p>
                 <p className="pb-1">Giới tính: <span className="text-[#143cad]">{genderConfig[data.gender]}</span></p>
                 <p className="pb-1">Ngày sinh: <span className="text-[#143cad]">{data.date_of_birth}</span></p>
@@ -152,21 +152,21 @@ function Details(props: DeleteProductProps) {
               </div>
             </div>
           </div>
-          <h2 className="uppercase text-4xl font-bold text-center text-[#143cad]">Kết quả</h2>
-          <div className="max-w-4xl m-auto h-[500px] mb-4">
+          <h2 className="uppercase text-5xl font-bold text-center text-[#143cad]">Kết quả</h2>
+          <div className="max-w-4xl m-auto h-[480px] mb-4">
             <LineChart dataLine={resultCalculator?.heightsByAge as number[]} date_of_birth={data.date_of_birth} />
           </div>
           <div className="max-w-4xl m-auto ">
             <p className="italic text-center text-lg mb-4">Đây là kết quả dự đoán chiều cao dựa trên số đo, độ tuổi, giới tính và sinh hoạt hiện tại, thực tế có thể thay đổi phụ thuộc vào chế độ sinh hoạt, tập luyện và dinh dưỡng của con.</p>
             <p className="italic text-center text-lg">Bổ sung <strong>CBP, CPP</strong> giúp <strong>xây dựng khung xương dài ra</strong> và <strong>tăng cường khả năng hấp thụ canxi cùng các dưỡng chất thiết yếu</strong> cho tăng trưởng và giúp xương chắc khỏe hơn, để <strong>con đạt chiều cao tối ưu.</strong></p>
-            <p className="italic text-center text-lg">Vào Group <Link to="#" className="underline">"BÊN CON PHÁT TRIỂN TẬN CÙNG"</Link> để cập nhật các phương pháp tăng chiều cao khoa học nhất</p>
+            <p className="italic text-center text-lg">Vào Group <Link to="#" className="underline font-bold">"BÊN CON PHÁT TRIỂN TẬN CÙNG"</Link> để cập nhật các phương pháp tăng chiều cao khoa học nhất</p>
           </div>
         </div>
         <div className="max-w-5xl m-auto p-4" ref={elementRef2}>
           <div className="mb-4">
             <h2 className="text-xl text-center mb-4 font-bold text-[#143cad]">CÂN NẶNG THEO THANG ĐO (kg)</h2>
             <div className="flex justify-center">
-              <table className="w-full">
+              <table className="w-full text-lg">
                 <thead className="bg-[#0D2D95] text-white">
                   <tr className="">
                     <th className="border border-[#0D2D95] border-r-[white] text-center p-2">Dưới -2SD <br />(bé đang trong tình trạng suy dinh dưỡng thể thiếu cân hoặc thấp còi)</th>
@@ -190,19 +190,19 @@ function Details(props: DeleteProductProps) {
               </table>
             </div>
           </div>
-          <div className=" flex justify-center flex-col mb-4">
+          <div className=" flex justify-center flex-col mb-8">
             <h2 className="text-xl text-center mb-4 font-bold text-[#143cad]">CHIỀU CAO THEO THANG ĐO (cm)</h2>
             <div className="flex justify-center">
-              <table className="w-full">
+              <table className="w-full text-lg">
                 <thead className="bg-[#0C63C6] text-white">
                   <tr>
-                    <th className="border border-[#0C63C6] border-r-[white] text-center px-6 py-2">Dưới chuẩn 3</th>
-                    <th className="border border-[#0C63C6] border-r-[white] text-center px-6 py-2">Dưới chuẩn 2</th>
-                    <th className="border border-[#0C63C6] border-r-[white] text-center px-6 py-2">Dưới chuẩn 1</th>
-                    <th className="border border-[#0C63C6] border-r-[white] text-center px-6 py-2">Chuẩn</th>
-                    <th className="border border-[#0C63C6] border-r-[white] text-center px-6 py-2">Trên chuẩn 1</th>
-                    <th className="border border-[#0C63C6] border-r-[white] text-center px-6 py-2">Trên chuẩn 2</th>
-                    <th className="border border-[#0C63C6] text-center px-6 py-2">Trên chuẩn 3</th>
+                    <th className="border border-[#0C63C6] border-r-[white] text-center px-2 py-2">Dưới chuẩn 3</th>
+                    <th className="border border-[#0C63C6] border-r-[white] text-center px-2 py-2">Dưới chuẩn 2</th>
+                    <th className="border border-[#0C63C6] border-r-[white] text-center px-2 py-2">Dưới chuẩn 1</th>
+                    <th className="border border-[#0C63C6] border-r-[white] text-center px-2 py-2">Chuẩn</th>
+                    <th className="border border-[#0C63C6] border-r-[white] text-center px-2 py-2">Trên chuẩn 1</th>
+                    <th className="border border-[#0C63C6] border-r-[white] text-center px-2 py-2">Trên chuẩn 2</th>
+                    <th className="border border-[#0C63C6] text-center px-2 py-2">Trên chuẩn 3</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -219,9 +219,9 @@ function Details(props: DeleteProductProps) {
               </table>
             </div>
           </div>
-          <div className="mb-16 max-w-4xl px-4 m-auto">
+          {/* <div className="mb-16 max-w-4xl px-4 m-auto">
             <p className="italic text-center text-[18px]">Đây là kết quả dự đoán chiều cao dựa trên số đo, độ tuổi, giới tính và sinh hoạt hiện tại, thực tế có thể thay đổi phụ thuộc vào chế độ sinh hoạt, tập luyện và dinh dưỡng của con.</p>
-          </div>
+          </div> */}
           <div className="text-2xl mb-8 max-w-5xl m-auto text-center custom-bg rounded-2xl py-2">
             <h3 className="uppercase text-[#0D2D95] font-bold text-4xl">Nhận xét</h3>
             <p className="text-2xl py-2">
@@ -254,8 +254,10 @@ function Details(props: DeleteProductProps) {
             </div>
           </div>
           <div className="flex justify-center flex-col">
-            <h2 className="uppercase text-2xl text-center mb-4 font-bold">DINH DƯỠNG GIÚP TĂNG CHIỀU CAO TỐI ƯU CHO TRẺ<br /><span className="text-[#143cad]">{data.fullName}</span></h2>
-            <div className="flex justify-center">
+            <h2 className="uppercase text-4xl text-center mb-4 font-bold text-[#143cad]">DINH DƯỠNG GIÚP TĂNG CHIỀU CAO TỐI ƯU CHO TRẺ
+              {/* <br /><span className="text-[#143cad]">{data.fullName}</span> */}
+            </h2>
+            <div className="flex justify-center text-lg">
               <table className="w-full">
                 <thead className="bg-liner text-white">
                   <tr>
@@ -270,14 +272,14 @@ function Details(props: DeleteProductProps) {
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_sang'].map(item => (
-                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.menu}</li>
+                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc] min-h-[72px] flex items-center justify-center">{item.menu}</li>
                         ))}
                       </ul>
                     </td>
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_sang'].map(item => (
-                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.nang_luong}</li>
+                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc] min-h-[72px] flex items-center justify-center">{item.nang_luong}</li>
                         ))}
                       </ul>
                     </td>
@@ -287,14 +289,14 @@ function Details(props: DeleteProductProps) {
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_phu_sang'].map(item => (
-                          <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                          <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.menu}</li>
                         ))}
                       </ul>
                     </td>
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_phu_sang'].map(item => (
-                          <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                          <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.nang_luong}</li>
                         ))}
                       </ul>
                     </td>
@@ -304,14 +306,14 @@ function Details(props: DeleteProductProps) {
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_trua'].map(item => (
-                          <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                          <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.menu}</li>
                         ))}
                       </ul>
                     </td>
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_trua'].map(item => (
-                          <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                          <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.nang_luong}</li>
                         ))}
                       </ul>
                     </td>
@@ -321,14 +323,14 @@ function Details(props: DeleteProductProps) {
                     <td className="text-center">
                       <ul>
                         {data_dinh_duong?.['bua_phu_chieu'].map(item => (
-                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.menu}</li>
+                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc] min-h-[72px] flex items-center justify-center">{item.menu}</li>
                         ))}
                       </ul>
                     </td>
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_phu_chieu'].map(item => (
-                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc]">{item.nang_luong}</li>
+                          <li key={item.menu} className="px-4 py-2 last:border-t last:border-[#ccc] min-h-[72px] flex items-center justify-center">{item.nang_luong}</li>
                         ))}
                       </ul>
                     </td>
@@ -338,14 +340,14 @@ function Details(props: DeleteProductProps) {
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_toi'].map(item => (
-                          <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                          <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.menu}</li>
                         ))}
                       </ul>
                     </td>
                     <td className="border-[1px] text-center">
                       <ul>
                         {data_dinh_duong?.['bua_toi'].map(item => (
-                          <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                          <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.nang_luong}</li>
                         ))}
                       </ul>
                     </td>
@@ -356,14 +358,14 @@ function Details(props: DeleteProductProps) {
                       <td className="border-[1px] text-center">
                         <ul>
                           {data_dinh_duong?.['bua_phu_toi'].map(item => (
-                            <li key={item.menu} className="px-4 py-2">{item.menu}</li>
+                            <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.menu}</li>
                           ))}
                         </ul>
                       </td>
                       <td className="border-[1px] text-center">
                         <ul>
                           {data_dinh_duong?.['bua_phu_toi'].map(item => (
-                            <li key={item.menu} className="px-4 py-2">{item.nang_luong}</li>
+                            <li key={item.menu} className="px-4 py-2 min-h-[72px] flex items-center justify-center">{item.nang_luong}</li>
                           ))}
                         </ul>
                       </td>
