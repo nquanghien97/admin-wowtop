@@ -83,7 +83,7 @@ function UpdateNews(props: EditNewsProps) {
       className='!p-0 !w-4/6 !top-4'
       footer={false}
     >
-      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#84571B] rounded-t-lg uppercase font-bold">Sửa Bản tin</div>
+      <div className="w-full text-center p-3 h-[60px] leading-[36px] bg-[#84571B] rounded-t-lg uppercase font-bold">Xem Bản tin</div>
       <div className="p-4">
         <Form form={form} className="flex flex-col gap-6" onFinish={onFinish}>
           <div className="flex items-center h-[40px]">
@@ -134,7 +134,7 @@ function UpdateNews(props: EditNewsProps) {
               value={content}
               onEditorChange={(newContent) => setContent(newContent)}
               init={{
-                height: 300,
+                height: 400,
                 width: 1000,
                 menubar: false,
                 extended_valid_elements: "iframe[src|frameborder|style|scrolling|class|width|height|name|align]",

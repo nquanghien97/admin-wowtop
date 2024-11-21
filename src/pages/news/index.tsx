@@ -1,7 +1,6 @@
 import { TableColumnsType, Button, Table, ConfigProvider } from 'antd'
 import { useEffect, useState } from 'react';
 import { NewsEntity } from '../../entities/News';
-import EditIcon from '../../assets/icons/EditIcon';
 import CloseIcon from '../../assets/icons/CloseIcon';
 import PlusIcon from '../../assets/icons/PlusIcon';
 import AddNews from './actions/AddNews';
@@ -9,6 +8,18 @@ import UpdateNews from './actions/UpdateNews';
 import DeleteNews from './actions/DeleteNews';
 import { getAllNews } from '../../services/news';
 import withAuth from '../../hocs/withAuth';
+import { formatDate } from '../../utils/formatDate';
+import ArticleIcon from '../../assets/icons/ArticleIcon';
+import Header from './Header';
+
+export interface SearchFormType {
+  title?: string;
+  dateStart?: string;
+  dateEnd?: string;
+  page?: number;
+  pageSize?: number;
+}
+
 
 function News() {
 
@@ -17,11 +28,14 @@ function News() {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<NewsEntity[]>([]);
-  const [paging, setPaging] = useState({
+  const [searchForm, setSearchForm] = useState<SearchFormType>({
     page: 1,
-    pageSize: 2,
-    total: 10
+    pageSize: 10,
+    title: '',
+    dateStart: '',
+    dateEnd: ''
   })
+  const [total, setToal] = useState(0);
   const [refreshKey, setRefreshKey] = useState(false);
   const [idNews, setIdNews] = useState(-1);
 
@@ -31,23 +45,31 @@ function News() {
 
   const columns: TableColumnsType = [
     {
-      title: "Tiêu đề",
-      dataIndex: 'title',
-      key: 1,
-      width: 300
+      title: "Thời gian tạo",
+      key: 2,
+      width: 300,
+      render(_, record) {
+        return (
+          <div>{formatDate(record.createdAt)}</div>
+        )
+      }
     },
     {
-      title: "Nội dung",
-      dataIndex: 'content',
-      key: 5,
-      render(value) {
-        return <div dangerouslySetInnerHTML={{ __html: value }} />
+      title: "Tiêu đề",
+      key: 2,
+      render(_, record) {
+        return (
+          <div className="flex items-center gap-4">
+            <img src={`${import.meta.env.VITE_API_URL}${record.imageUrl}`} alt={record.title} className="rounded-md" width={160} height={160} />
+            <p>{record.title}</p>
+          </div>
+        )
       }
     },
     {
       title: "Thao tác",
       dataIndex: 5,
-      width: 150,
+      width: 200,
       render(_, record) {
         return (
           <div className="flex flex-col justify-between gap-2">
@@ -62,9 +84,9 @@ function News() {
               <Button
                 className="w-full"
                 type="primary"
-                icon={<EditIcon width={16} height={16} color="black" />}
+                icon={<ArticleIcon width={16} height={16} fill='white' />}
               >
-                <p className="text-black">Sửa</p>
+                <p className="text-white">Xem</p>
               </Button>
             </div>
             <div className="flex items-center min-w-[120px]">
@@ -87,31 +109,29 @@ function News() {
     }
   ]
 
-  const fetchData = async ({ page, pageSize }: { page: number, pageSize: number }) => {
-    setLoading(true);
-    try {
-      const res = await getAllNews({ page, pageSize });
-      setData(res.data.data);
-      setPaging(res.data.paging)
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    (async () => {
-      await fetchData({ page: paging.page, pageSize: paging.pageSize })
-    })()
-  }, [paging.page, paging.pageSize, refreshKey])
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await getAllNews(searchForm);
+        setData(res.data.data);
+        setToal(res.data.paging.total)
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData()
+  }, [refreshKey, searchForm])
 
   const onChangePaging = async (page: number, pageSize: number) => {
-    await fetchData({ page: page, pageSize: pageSize })
+    setSearchForm({...searchForm, page, pageSize})
   }
 
   return (
     <div className="h-full p-4">
+      <Header setSearchForm={setSearchForm} setLoading={setLoading} />
       <div className="flex mb-4">
         <div className="m-auto">
           <span className="px-6 p-2 rounded-full bg-[#84571B] uppercase font-bold text-2xl">Quản lý Tin tức</span>
@@ -147,12 +167,12 @@ function News() {
           bordered
           loading={loading}
           pagination={{
-            total: paging.total,
-            pageSize: paging.pageSize,
+            total: total,
+            pageSize: searchForm.pageSize,
             onChange: onChangePaging,
             showSizeChanger: true
           }}
-          scroll={{ y: 700 }}
+          scroll={{ y: 600 }}
         />
       </ConfigProvider>
       {openAddModal && <AddNews open={openAddModal} onClose={() => setOpenAddModal(false)} setRefreshKey={setRefreshKey} />}

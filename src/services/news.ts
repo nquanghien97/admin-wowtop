@@ -1,7 +1,11 @@
 import api from "../config/api";
 
-export function getAllNews({ page = 1, pageSize = 10 } : { page?: number, pageSize?: number }) {
-  return api.get(`/news?page=${page}&pageSize=${pageSize}`)
+export function getAllNews({ page, pageSize, title } : { page?: number, pageSize?: number, title?: string}) {
+  const params = new URLSearchParams();
+  if (page) params.append('page', page.toString());
+  if (pageSize) params.append('pageSize', pageSize.toString());
+  if (title) params.append('title', title.toString());
+  return api.get(`/news?${params.toString()}`)
 }
 
 export function createNews(data: FormData) {
