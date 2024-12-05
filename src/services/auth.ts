@@ -1,7 +1,7 @@
 import api from "../config/api";
 
-export function login({ username, password } : { username: string, password: string }) {
-  return api.post('/auth/login' , {username, password })
+export function login({ phone_number, password } : { phone_number: string, password: string }) {
+  return api.post('/auth/login' , {phone_number, password })
 } 
 
 export function logout() {

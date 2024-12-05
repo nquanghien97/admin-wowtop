@@ -7,7 +7,7 @@ import { useNotification } from '../hooks/useNotification';
 import { login } from "../services/auth";
 
 interface FormValue {
-  username: string;
+  phone_number: string;
   password: string;
 }
 
@@ -51,7 +51,7 @@ function Login() {
           >
             <Form.Item
               className="!mb-0 py-2"
-              name="username"
+              name="phone_number"
               rules={[
                 {
                   required: true,
@@ -60,7 +60,7 @@ function Login() {
               ]}
               >
                 <Input
-                    placeholder="Tên đăng nhập"
+                    placeholder="Số điện thoại"
                     size="large"
                   />
             </Form.Item>
