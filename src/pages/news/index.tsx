@@ -17,7 +17,7 @@ export interface SearchFormType {
   dateStart?: string;
   dateEnd?: string;
   page?: number;
-  pageSize?: number;
+  page_size?: number;
 }
 
 
@@ -30,7 +30,7 @@ function News() {
   const [data, setData] = useState<NewsEntity[]>([]);
   const [searchForm, setSearchForm] = useState<SearchFormType>({
     page: 1,
-    pageSize: 10,
+    page_size: 10,
     title: '',
     dateStart: '',
     dateEnd: ''
@@ -125,8 +125,8 @@ function News() {
     fetchData()
   }, [refreshKey, searchForm])
 
-  const onChangePaging = async (page: number, pageSize: number) => {
-    setSearchForm({...searchForm, page, pageSize})
+  const onChangePaging = async (page: number, page_size: number) => {
+    setSearchForm({...searchForm, page, page_size})
   }
 
   return (
@@ -168,7 +168,7 @@ function News() {
           loading={loading}
           pagination={{
             total: total,
-            pageSize: searchForm.pageSize,
+            pageSize: searchForm.page_size,
             onChange: onChangePaging,
             showSizeChanger: true
           }}

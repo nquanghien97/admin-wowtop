@@ -20,7 +20,7 @@ function HeightCalculator() {
   const [data, setData] = useState<HeightCalculatorEntity[]>([]);
   const [paging, setPaging] = useState({
     page: 1,
-    pageSize: 10,
+    page_size: 10,
     total: 10
   });
   const [openDetailModal, setOpenDetailModal] = useState(false);
@@ -29,7 +29,7 @@ function HeightCalculator() {
   const [refreshKey, setRefreshKey] = useState(false);
   const [searchForm, setSearchForm] = useState<SearchFormType>({
     page: 1,
-    pageSize: 10,
+    page_size: 10,
     code: '',
     phoneNumber: '',
     parentName: '',
@@ -155,8 +155,8 @@ function HeightCalculator() {
     }
   ]
 
-  const fetchData = useCallback(async ({ page, pageSize }: { page?: number, pageSize?: number }) => {
-      const res = await getInformations({ page, pageSize, ...searchForm });
+  const fetchData = useCallback(async ({ page, page_size }: { page?: number, page_size?: number }) => {
+      const res = await getInformations({ page, page_size, ...searchForm });
       return res
   }, [searchForm]);
 
@@ -174,9 +174,9 @@ function HeightCalculator() {
     })()
   }, [fetchData, refreshKey, searchForm]);
 
-  const onChangePaging = async (page: number, pageSize: number) => {
+  const onChangePaging = async (page: number, page_size: number) => {
     setLoading(true);
-    setSearchForm({ ...searchForm, page, pageSize });
+    setSearchForm({ ...searchForm, page, page_size });
   }
   console.log(searchForm)
 
@@ -208,7 +208,7 @@ function HeightCalculator() {
             loading={loading}
             pagination={{
               total: paging.total,
-              pageSize: paging.pageSize,
+              page_size: paging.page_size,
               onChange: onChangePaging,
               showSizeChanger: true
             }}

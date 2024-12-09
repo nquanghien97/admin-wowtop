@@ -21,3 +21,8 @@
 /* .ant-input::placeholder {
   color: black !important;
 } */
+
+.modal-confirm .ant-modal-content {
+  padding: 20px !important;
+  background: white !important;
+}

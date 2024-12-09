@@ -2,17 +2,17 @@ import api from "../config/api";
 
 export interface SearchFormType {
   page?: number;
-  pageSize?: number;
+  page_size?: number;
   code?: string;
   phoneNumber?: string;
   parentName?: string;
   fullName?: string;
 }
 
-export function getInformations({ page, pageSize, code, fullName, phoneNumber, parentName }: SearchFormType) {
+export function getInformations({ page, page_size, code, fullName, phoneNumber, parentName }: SearchFormType) {
   const params = new URLSearchParams();
   if (page) params.append('page', page.toString());
-  if (pageSize) params.append('pageSize', pageSize.toString());
+  if (page_size) params.append('page_size', page_size.toString());
   if (code) params.append('code', code.toString());
   if (fullName) params.append('fullName', fullName.toString());
   if (phoneNumber) params.append('phoneNumber', phoneNumber.toString());

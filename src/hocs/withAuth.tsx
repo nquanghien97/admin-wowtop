@@ -1,6 +1,7 @@
-import React, { useEffect, ComponentType } from 'react';
+import React, { useEffect, useRef, ComponentType } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useNotification } from '../hooks/useNotification';
+import { parseJwt } from '../utils/parseJwt';
 
 function withAuth<P extends object>(
   WrappedComponent: ComponentType<P>,
@@ -9,17 +10,22 @@ function withAuth<P extends object>(
   const WithAuth: React.FC<P> = (props) => {
     const navigate = useNavigate();
     const notification = useNotification();
+    const hasShownNotification = useRef(false); // Cờ kiểm tra trạng thái thông báo
+
     useEffect(() => {
       const checkAuth = () => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token') as string;
         const isAuthenticated = !!token;
-        
-        if (requireAuth && !isAuthenticated) {
-          // Nếu yêu cầu xác thực nhưng chưa đăng nhập, chuyển hướng đến trang login
-          notification.warning('Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại!')
+        const userRole = parseJwt(token);
+
+        if ((requireAuth && !isAuthenticated) || (isAuthenticated && userRole?.user_role !== 'ADMIN')) {
+          if (!hasShownNotification.current) {
+            // Hiển thị thông báo và cập nhật trạng thái
+            notification.warning('Bạn không có quyền truy cập vào trang này!');
+            hasShownNotification.current = true;
+          }
           navigate('/login');
         } else if (!requireAuth && isAuthenticated) {
-          // Nếu đã đăng nhập và cố gắng truy cập trang login, chuyển hướng đến trang chủ
           navigate('/');
         }
       };
@@ -27,7 +33,6 @@ function withAuth<P extends object>(
       checkAuth();
     }, [navigate, notification]);
 
-    // Render component gốc với tất cả props
     return <WrappedComponent {...props} />;
   };
 

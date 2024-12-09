@@ -1,9 +1,9 @@
 import api from "../config/api";
 
-export function getAllNews({ page, pageSize, title } : { page?: number, pageSize?: number, title?: string}) {
+export function getAllNews({ page, page_size, title } : { page?: number, page_size?: number, title?: string}) {
   const params = new URLSearchParams();
   if (page) params.append('page', page.toString());
-  if (pageSize) params.append('pageSize', pageSize.toString());
+  if (page_size) params.append('page_size', page_size.toString());
   if (title) params.append('title', title.toString());
   return api.get(`/news?${params.toString()}`)
 }

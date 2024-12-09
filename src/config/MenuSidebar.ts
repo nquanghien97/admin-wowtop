@@ -13,5 +13,15 @@ export const MenuSidebar = [
     key: 3,
     title: 'Đơn hàng',
     path: 'don-hang',
+  },
+  {
+    key: 4,
+    title: 'Mã tích điểm',
+    path: 'ma-tich-diem',
+  },
+  {
+    key: 5,
+    title: 'Quản lý người dùng',
+    path: 'quan-ly-nguoi-dung',
   }
 ]

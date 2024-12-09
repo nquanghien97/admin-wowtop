@@ -5,6 +5,7 @@ import withAuth from '../hocs/withAuth';
 import { useEffect, useState } from 'react';
 import { useNotification } from '../hooks/useNotification';
 import { login } from "../services/auth";
+import { parseJwt } from "../utils/parseJwt";
 
 interface FormValue {
   phone_number: string;
@@ -18,6 +19,7 @@ function Login() {
 
   useEffect(() => {
     document.title = "Đăng nhập"
+    localStorage.removeItem('token');
   }, []);
 
   const notification = useNotification();
@@ -25,9 +27,14 @@ function Login() {
     setLoading(true)
     try {
       const res = await login(formValue);
-      notification.success("Đăng nhập thành công")
       const { data } = res
+      const data_parse = parseJwt(data.accessToken)
+      if(data_parse.user_role !== 'ADMIN') {
+        notification.warning("Bạn không có quyền truy cập")
+        return;
+      }
       localStorage.setItem('token', data.accessToken)
+      notification.success("Đăng nhập thành công")
       navigate('/')
     } catch (err) {
       console.log(err)
@@ -60,7 +67,7 @@ function Login() {
               ]}
               >
                 <Input
-                    placeholder="Số điện thoại"
+                    placeholder="Tài khoản"
                     size="large"
                   />
             </Form.Item>

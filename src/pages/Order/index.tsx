@@ -12,7 +12,7 @@ function Order() {
   const [data, setData] = useState<OrderEntity[]>([]);
   const [paging, setPaging] = useState({
     page: 1,
-    pageSize: 10,
+    page_size: 10,
     total: 10
   })
   const [refreshKey, setRefreshKey] = useState(false);
@@ -98,10 +98,10 @@ function Order() {
     }
   ]
 
-  const fetchData = async ({ page, pageSize }: { page: number, pageSize: number }) => {
+  const fetchData = async ({ page, page_size }: { page: number, page_size: number }) => {
     setLoading(true);
     try {
-      const res = await getOrders({ page, pageSize });
+      const res = await getOrders({ page, page_size });
       setData(res.data.data);
       setPaging(res.data.paging)
     } catch (err) {
@@ -113,12 +113,12 @@ function Order() {
 
   useEffect(() => {
     (async () => {
-      await fetchData({ page: paging.page, pageSize: paging.pageSize })
+      await fetchData({ page: paging.page, page_size: paging.page_size })
     })()
-  }, [paging.page, paging.pageSize, refreshKey])
+  }, [paging.page, paging.page_size, refreshKey])
 
-  const onChangePaging = async (page: number, pageSize: number) => {
-    await fetchData({ page: page, pageSize: pageSize })
+  const onChangePaging = async (page: number, page_size: number) => {
+    await fetchData({ page: page, page_size: page_size })
   }
 
   return (
@@ -152,7 +152,7 @@ function Order() {
           loading={loading}
           pagination={{
             total: paging.total,
-            pageSize: paging.pageSize,
+            pageSize: paging.page_size,
             onChange: onChangePaging,
             showSizeChanger: true
           }}
