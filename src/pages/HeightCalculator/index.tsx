@@ -208,7 +208,7 @@ function HeightCalculator() {
             loading={loading}
             pagination={{
               total: paging.total,
-              page_size: paging.page_size,
+              pageSize: paging.page_size,
               onChange: onChangePaging,
               showSizeChanger: true
             }}
