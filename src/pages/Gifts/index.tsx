@@ -95,24 +95,6 @@ function GiftsManagement() {
       key: 5,
     },
     {
-      title: "Người đổi quà",
-      dataIndex: 'user',
-      render(value) {
-        return (
-          <div>{value?.full_name || 'Chưa có thông tin'}</div>
-        )
-      },
-      key: 6,
-    },
-    {
-      title: "Thời gian đổi quà",
-      dataIndex: 'exchange_time',
-      key: 7,
-      render(value) {
-        return formatDate(value) || 'Chưa có thông tin'
-      }
-    },
-    {
       title: "Thao tác",
       dataIndex: 11,
       width: 150,

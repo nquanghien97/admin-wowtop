@@ -15,15 +15,15 @@ function Layout() {
           </div>
         </div>
       </div>
-      <div className="h-[calc(h-screen-160px)] w-[160px] z-[100]">
-        <div className="bg-white w-[160px] opacity-85 fixed top-[60px] bottom-0 left-0 bg-no-repeat py-2">
+      <div className="h-[calc(h-screen-180px)] w-[180px] z-[100]">
+        <div className="bg-white w-[180px] opacity-85 fixed top-[60px] bottom-0 left-0 bg-no-repeat py-2">
           {MenuSidebar.map((menu) => (
             <div className="flex items-center justify-center p-2" key={menu.path}>
-              <SidebarItem title={menu.title} path={menu.path} />
+              <SidebarItem menu={menu} />
             </div>
           ))}
         </div>
-        <div className="w-[calc(100vw-177px)] mt-[60px] ml-[160px] h-[calc(h-screen-160px)]">
+        <div className="w-[calc(100vw-197px)] mt-[60px] ml-[180px] h-[calc(h-screen-180px)]">
           <Outlet />
         </div>
       </div>

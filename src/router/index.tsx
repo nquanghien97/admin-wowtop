@@ -24,7 +24,7 @@ const router = createBrowserRouter(
         <Route path="/don-hang" element={<Order />} />
         <Route path="/ma-tich-diem" element={<AccumulatePoints />} />
         <Route path="/quan-ly-nguoi-dung" element={<UsersManagement />} />
-        <Route path="/quan-ly-qua" element={<GiftsManagement />} />
+        <Route path="/danh-sach-qua" element={<GiftsManagement />} />
       </Route>
     </>
   )
