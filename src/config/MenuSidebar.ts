@@ -23,5 +23,10 @@ export const MenuSidebar = [
     key: 5,
     title: 'Quản lý người dùng',
     path: 'quan-ly-nguoi-dung',
+  },
+  {
+    key: 6,
+    title: 'Quản lý quà',
+    path: 'quan-ly-qua',
   }
 ]

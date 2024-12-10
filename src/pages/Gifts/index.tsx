@@ -1,4 +1,4 @@
-import { Button, ConfigProvider, Table, TableColumnsType } from "antd";
+import { Button, ConfigProvider, Image, Table, TableColumnsType } from "antd";
 import Delete from "./actions/Delete";
 import { useCallback, useEffect, useState } from "react";
 import CloseIcon from "../../assets/icons/CloseIcon";
@@ -7,18 +7,20 @@ import EditIcon from "../../assets/icons/EditIcon";
 import Edit from "./actions/Edit";
 import Header from "./Header";
 import { UserEntity } from "../../entities/User";
-import { getAllUsers } from "../../services/user";
+import { getAllGifts } from "../../services/gift";
+import PlusIcon from "../../assets/icons/PlusIcon";
+import Add from "./actions/Add";
 
 export interface SearchFormType {
   page?: number;
   page_size?: number;
-  phone_number?: string;
-  full_name?: string
+  name?: string;
 }
 
-function UsersManagement() {
+function GiftsManagement() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [openAddModal, setOpenAddModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<UserEntity[]>([]);
   const [paging, setPaging] = useState({
@@ -29,14 +31,13 @@ function UsersManagement() {
   const [searchForm, setSearchForm] = useState<SearchFormType>({
     page: paging.page,
     page_size: paging.page_size,
-    phone_number: '',
-    full_name: ''
+    name: '',
   })
   const [refreshKey, setRefreshKey] = useState(false);
   const [id, setId] = useState('');
 
   useEffect(() => {
-    document.title = "Quản lý người dùng"
+    document.title = "Quản lý quà"
   }, []);
 
   const columns: TableColumnsType = [
@@ -54,18 +55,28 @@ function UsersManagement() {
       key: 1,
     },
     {
-      title: "Họ tên",
-      dataIndex: 'full_name',
+      title: "Tên",
+      dataIndex: 'name',
       key: 2,
     },
     {
-      title: "Số điện thoại",
-      dataIndex: 'phone_number',
+      title: "Hình ảnh",
+      dataIndex: 'imageUrl',
       key: 3,
+      render(value) {
+        return (
+          <div className="flex flex-wrap justify-center w-full py-4 gap-4 eee">
+            <Image.PreviewGroup
+            >
+              <Image className="border-2 m-auto cursor-pointer" width={200} src={`${import.meta.env.VITE_API_URL}${value}`} alt="preview avatar" />
+            </Image.PreviewGroup>
+          </div>
+        )
+      }
     },
     {
-      title: "Điểm tích lũy",
-      dataIndex: 'points_accumulation',
+      title: "Điểm",
+      dataIndex: 'point',
       render(value) {
         return (
           <div>{value} điểm</div>
@@ -74,44 +85,32 @@ function UsersManagement() {
       key: 4,
     },
     {
-      title: "Sinh nhật mẹ",
-      dataIndex: 'mother_dob',
+      title: "Số lượng",
+      dataIndex: 'quantity',
       render(value) {
         return (
-          <div>{formatDate(value)}</div>
+          <div>{value} sản phẩm</div>
         )
       },
       key: 5,
     },
     {
-      title: "Sinh nhật con",
-      dataIndex: 'child_dob',
+      title: "Người đổi quà",
+      dataIndex: 'user',
       render(value) {
         return (
-          <div>{formatDate(value)}</div>
+          <div>{value?.full_name || 'Chưa có thông tin'}</div>
         )
       },
       key: 6,
     },
     {
-      title: "Tỉnh thành",
-      dataIndex: 'province',
+      title: "Thời gian đổi quà",
+      dataIndex: 'exchange_time',
       key: 7,
-    },
-    {
-      title: "Quận huyện",
-      dataIndex: 'district',
-      key: 8,
-    },
-    {
-      title: "Phường xã",
-      dataIndex: 'ward',
-      key: 9,
-    },
-    {
-      title: "Địa chỉ",
-      dataIndex: 'address',
-      key: 10,
+      render(value) {
+        return formatDate(value) || 'Chưa có thông tin'
+      }
     },
     {
       title: "Thao tác",
@@ -160,7 +159,7 @@ function UsersManagement() {
   const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await getAllUsers(searchForm);
+      const res = await getAllGifts(searchForm);
       setData(res.data.data);
       setPaging(res.data.paging)
     } catch (err) {
@@ -186,6 +185,13 @@ function UsersManagement() {
       <div className="flex mb-4">
         <div className="m-auto">
           <span className="px-6 p-2 rounded-full bg-[#84571B] uppercase font-bold text-2xl">Quản lý người dùng</span>
+        </div>
+        <div
+          className="bg-[#84571B] rounded-md cursor-pointer h-full px-4 py-2 flex items-center justify-center hover:opacity-80 duration-300 text-white"
+          onClick={() => setOpenAddModal(true)}
+        >
+          Thêm mới
+          <PlusIcon color="white" />
         </div>
       </div>
       <ConfigProvider
@@ -219,10 +225,11 @@ function UsersManagement() {
           scroll={{ y: 560 }}
         />
       </ConfigProvider>
+      {openAddModal && <Add open={openAddModal} onClose={() => setOpenAddModal(false)} setRefreshKey={setRefreshKey} />}
       {openDeleteModal && <Delete open={openDeleteModal} onCancel={() => setOpenDeleteModal(false)} id={id} setRefreshKey={setRefreshKey} />}
       {openEditModal && <Edit open={openEditModal} onClose={() => setOpenEditModal(false)} id={id} setRefreshKey={setRefreshKey} />}
     </div>
   )
 }
 
-export default UsersManagement
+export default GiftsManagement

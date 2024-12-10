@@ -8,6 +8,7 @@ import Details from "../pages/HeightCalculator/Details";
 import Order from "../pages/Order";
 import AccumulatePoints from "../pages/AccumulatePoints";
 import UsersManagement from "../pages/UsersManagement";
+import GiftsManagement from "../pages/Gifts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         <Route path="/don-hang" element={<Order />} />
         <Route path="/ma-tich-diem" element={<AccumulatePoints />} />
         <Route path="/quan-ly-nguoi-dung" element={<UsersManagement />} />
+        <Route path="/quan-ly-qua" element={<GiftsManagement />} />
       </Route>
     </>
   )
