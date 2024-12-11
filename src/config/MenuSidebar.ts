@@ -47,5 +47,5 @@ export const MenuSidebar: MenuSidebarType[] = [
         path: 'lich-su-doi-qua',
       }
     ]
-  }
+  },
 ]
