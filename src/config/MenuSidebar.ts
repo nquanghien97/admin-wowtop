@@ -48,4 +48,9 @@ export const MenuSidebar: MenuSidebarType[] = [
       }
     ]
   },
+  {
+    key: 7,
+    title: 'Dance Challenge',
+    path: 'dance-challenge',
+  }
 ]

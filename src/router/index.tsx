@@ -10,6 +10,7 @@ import AccumulatePoints from "../pages/AccumulatePoints";
 import UsersManagement from "../pages/UsersManagement";
 import GiftsManagement from "../pages/Gifts";
 import ExchangedGiftManagement from "../pages/ExchangedGiftManagement";
+import DanceChallenge from "../pages/DanceChallenge";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path="/quan-ly-nguoi-dung" element={<UsersManagement />} />
         <Route path="/danh-sach-qua" element={<GiftsManagement />} />
         <Route path="/lich-su-doi-qua" element={<ExchangedGiftManagement />} />
+        <Route path="/dance-challenge" element={<DanceChallenge />} />
       </Route>
     </>
   )
